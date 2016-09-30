@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://localhost:8080', // Setting the URL for the hot reload
+    'webpack-dev-server/client?http://localhost:8090', // Setting the URL for the hot reload
     'webpack/hot/only-dev-server', // Reload only the dev server
     './src/index.jsx'
   ],
@@ -27,6 +27,8 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    host: '0.0.0.0',
+    port: '8090',
     hot: true
   },
   plugins: [
