@@ -4,7 +4,8 @@
   "description": "Web UI to get openvpn profiles and manage revocation list",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\"",
+    "test:watch": "npm run test -- --watch --watch-extensions jsx"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,16 @@
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
+  },
+  "babel": {
+  "presets": [
+    "es2015",
+    "react"
+    ]
   }
 }
