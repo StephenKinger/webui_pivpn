@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
 import {reducer} from './reducer';
-import {AppContainer} from './components/App';
+import {AppContainer} from './components/App/App';
 import {compose, createStore} from 'redux';
 
 const createStoreDevTools = compose(
