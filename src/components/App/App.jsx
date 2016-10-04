@@ -9,13 +9,15 @@ import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
 
 import * as actionCreators from '../../action_creators';
-require("bootstrap-sass-loader");
+
+require('./bootstrap_import.scss');
 
 export default class AppGuiOpenVPN extends React.Component {
   render() {
     const styles = require('./App.scss');
 
-      return <div className="titi">
+    return (
+      <div className={styles.app}>
       <Helmet title="OpenVPN front end"/>
       <Navbar fixedTop>
           <Navbar.Header>
@@ -32,7 +34,7 @@ export default class AppGuiOpenVPN extends React.Component {
             <Nav navbar>
               <LinkContainer to="/chat">
                 <NavItem>Chat</NavItem>
-              </LinkContainer>}
+              </LinkContainer>
 
               <LinkContainer to="/widgets">
                 <NavItem>Widgets</NavItem>
@@ -44,7 +46,7 @@ export default class AppGuiOpenVPN extends React.Component {
                 <NavItem>About Us</NavItem>
               </LinkContainer>
             </Nav>
-            <p className='Navbar-text'>Logged in as <strong>Anonymous</strong>.</p>}
+            <p className='Navbar-text'>Logged in as <strong>Anonymous</strong>.</p>
             <Nav navbar pullRight>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/>
@@ -52,7 +54,7 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </div>
+      </div> )
   }
 }
 
