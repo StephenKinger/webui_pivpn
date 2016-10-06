@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
+import StartStopService from '../ServiceContainer/StartStopService'
 
 import * as actionCreators from '../../action_creators';
 
@@ -46,8 +47,9 @@ export default class AppGuiOpenVPN extends React.Component {
                 <NavItem>About Us</NavItem>
               </LinkContainer>
             </Nav>
-            <p className='Navbar-text'>Logged in as <strong>Anonymous</strong>.</p>
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
             <Nav navbar pullRight>
+              <StartStopService/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/>
               </NavItem>

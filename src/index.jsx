@@ -2,7 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
 import {reducer} from './reducer';
-import {AppContainer} from './components/App/App';
+import {AppContainer} from './containers/App/App';
 import {compose, createStore} from 'redux';
 
 const createStoreDevTools = compose(
@@ -14,7 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <AppContainer/>
   </Provider>,
-  document.getElementById('App')
+  document.getElementById('app')
 );
 
 if (process.env.NODE_ENV !== 'production') {
