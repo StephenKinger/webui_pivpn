@@ -25,7 +25,7 @@ export default class AppGuiOpenVPN extends React.Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
                 <div className={styles.brand}/>
-                <span>My App</span>
+                <span>WebUI for OpenVPN server management</span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -33,18 +33,15 @@ export default class AppGuiOpenVPN extends React.Component {
 
           <Navbar.Collapse>
             <Nav navbar>
-              <LinkContainer to="/chat">
-                <NavItem>Chat</NavItem>
+              <LinkContainer to="/status">
+                <NavItem>Status</NavItem>
               </LinkContainer>
 
-              <LinkContainer to="/widgets">
-                <NavItem>Widgets</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
-                <NavItem>Survey</NavItem>
+              <LinkContainer to="/users">
+                <NavItem>Users</NavItem>
               </LinkContainer>
               <LinkContainer to="/about">
-                <NavItem>About Us</NavItem>
+                <NavItem>About</NavItem>
               </LinkContainer>
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
@@ -56,7 +53,18 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      </div> )
+      <div className={styles.appContent}>
+        {this.props.children}
+        <p>Cuocouc</p>
+      </div>
+      <div className="well text-center">
+        Have questions? Ask for help <a
+        href="https://github.com/erikras/react-redux-universal-hot-example/issues"
+        target="_blank">on Github</a> or in the <a
+        href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
+      </div>
+            </div>
+     )
   }
 }
 

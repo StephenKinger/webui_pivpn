@@ -1,28 +1,33 @@
 import React, {Component} from 'react';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import ServiceStarted from '../../components/Service/ServiceStarted';
-import ServiceStopped from '../../components/Service/ServiceStopped';
+import Service from '../../components/Service/Service';
+
 
 export default class StartStopService extends React.Component {
   constructor(props) {
     super(props);
-    console.log("coucocssdu")
     this.state = {power: 'on'};
   }
 
   toggleStatus() {
-    console.log("status toggled");
-    this.setState({power: 'off'});
+    if (this.state.power == 'on') {
+      console.log("passage a off");
+      this.setState({power: 'off'});
+    }
+    else {
+      console.log("passage a on");
+      this.setState({power: 'on'});
+    }
   }
 
   render () {
     if (this.state.power == 'on') {
-      console.log('on');
-      return <ServiceStarted toggleService={this.toggleStatus.bind(this)}/>
+      console.log("render a on");
+      return <Service serviceState={true} toggleService={this.toggleStatus.bind(this)}/>
     }
     else {
-      console.log('off');
-      return <ServiceStopped toggleService={this.toggleStatus.bind(this)}/>
+      console.log("render a off");
+      return <Service serviceState={false} toggleService={this.toggleStatus.bind(this)}/>
     }
   }
 }
