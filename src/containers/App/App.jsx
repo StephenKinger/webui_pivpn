@@ -11,7 +11,7 @@ import StartStopService from '../ServiceContainer/StartStopService'
 
 import * as actionCreators from '../../action_creators';
 
-require('style!./bootstrap_import.scss');
+require("bootstrap-sass-webpack");
 
 export default class AppGuiOpenVPN extends React.Component {
   render() {

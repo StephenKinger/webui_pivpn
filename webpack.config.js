@@ -1,10 +1,13 @@
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
+require("bootstrap-loader");
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
     'jquery',
     'bootstrap-sass',
+    'bootstrap-loader',
     'webpack-dev-server/client?http://localhost:8090', // Setting the URL for the hot reload
     'webpack/hot/only-dev-server', // Reload only the dev server,
     'font-awesome-webpack!./config/font-awesome.config.js',
@@ -22,7 +25,7 @@ module.exports = {
   },
   {
     test: /\.css$/,
-    loader: 'style!css' // We add the css loader
+    loaders: ['style', 'css']
   },
   {
     test: /\.less$/,
@@ -31,7 +34,7 @@ module.exports = {
   },
   {
     test: /\.scss$/,
-    loaders: [ "style", "css?sourceMap", "sass?sourceMap"]
+    loaders: ['style', 'css', 'postcss', 'sass']
   },
   {
     test: /\.(png|jpg)$/,
@@ -80,5 +83,10 @@ module.exports = {
       jQuery: "jquery"
     }),
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  postcss: function() {
+  return [autoprefixer({
+    browsers: ['last 3 versions']
+  })];
+  }
 };
