@@ -1,13 +1,11 @@
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-require("bootstrap-loader");
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
     'jquery',
-    'bootstrap-sass',
-    'bootstrap-loader',
+    'bootstrap',
     'webpack-dev-server/client?http://localhost:8090', // Setting the URL for the hot reload
     'webpack/hot/only-dev-server', // Reload only the dev server,
     'font-awesome-webpack!./config/font-awesome.config.js',
@@ -18,10 +16,6 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel'
-  },
-  {
-    test: /bootstrap-sass\/assets\/javascripts\//,
-    loader: 'imports?jQuery=jquery'
   },
   {
     test: /\.css$/,
