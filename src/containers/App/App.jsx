@@ -24,7 +24,11 @@ export default class AppGuiOpenVPN extends React.Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
+<<<<<<< HEAD
                 <div className="app-brand"/>
+=======
+                <div className={styles.brand}/>
+>>>>>>> setup_front_end_services
                 <span>WebUI for OpenVPN server management</span>
               </IndexLink>
             </Navbar.Brand>
@@ -53,7 +57,11 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+<<<<<<< HEAD
       <div className="appContent">
+=======
+      <div className={styles.appContent}>
+>>>>>>> setup_front_end_services
         {this.props.children}
         <p>Cuocouc</p>
       </div>
