@@ -9,7 +9,7 @@ import {compose, createStore, combineReducers} from 'redux';
 import {getRoutes} from './routes'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js'; 
 
 const createStoreDevTools = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f

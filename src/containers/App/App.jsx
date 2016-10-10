@@ -12,6 +12,8 @@ import StartStopService from '../ServiceContainer/StartStopService'
 import * as actionCreators from '../../action_creators';
 
 
+
+
 export default class AppGuiOpenVPN extends React.Component {
   render() {
     const styles = require('./App.scss');
@@ -23,7 +25,7 @@ export default class AppGuiOpenVPN extends React.Component {
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
-                <div className="app-brand"/>
+                <div className={styles.brand}/>
                 <span>WebUI for OpenVPN server management</span>
               </IndexLink>
             </Navbar.Brand>
@@ -52,18 +54,16 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-      <div className="appContent">
-        {this.props.children}
-        <p>Cuocouc</p>
-      </div>
-      <div className="well text-center">
-        Have questions? Ask for help <a
-        href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-        target="_blank">on Github</a> or in the <a
-        href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
-      </div>
-            </div>
-     )
+        <div className={styles.appContent}>
+          {this.props.children}
+        </div>
+        <div className="well text-center">
+          Have questions? Ask for help <a
+          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
+          target="_blank">on Github</a> or in the <a
+          href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
+        </div>
+      </div> )
   }
 }
 

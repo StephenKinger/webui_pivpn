@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -19,7 +18,7 @@ module.exports = {
   },
   {
     test: /\.css$/,
-    loaders: ['style', 'css']
+    loader: 'style!css' // We add the css loader
   },
   {
     test: /\.less$/,
@@ -28,7 +27,7 @@ module.exports = {
   },
   {
     test: /\.scss$/,
-    loaders: ['style', 'css', 'postcss', 'sass']
+    loaders: [ "style", "css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", "sass?sourceMap"]
   },
   {
     test: /\.(png|jpg)$/,
@@ -77,10 +76,5 @@ module.exports = {
       jQuery: "jquery"
     }),
     new webpack.HotModuleReplacementPlugin()
-  ],
-  postcss: function() {
-  return [autoprefixer({
-    browsers: ['last 3 versions']
-  })];
-  }
+  ]
 };
