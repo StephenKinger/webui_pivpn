@@ -3,6 +3,14 @@ import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
 
 
+// {
+//   "id": "none",
+//   "name": "other",
+//   "state": "Valid",
+//   "location": "Moon",
+//   "email": "moon@itsatrap.tech"
+// }
+
 export default class Widgets extends Component {
 
   handleEdit() {
@@ -17,18 +25,20 @@ export default class Widgets extends Component {
           <thead>
           <tr>
             <th className={styles.idCol}>ID</th>
-            <th className={styles.colorCol}>Color</th>
-            <th className={styles.sprocketsCol}>Sprockets</th>
-            <th className={styles.ownerCol}>Owner</th>
+            <th className={styles.colorCol}>Name</th>
+            <th className={styles.ownerCol}>email</th>
+            <th className={styles.ownerCol}>Location</th>
+            <th className={styles.sprocketsCol}>Status</th>
             <th className={styles.buttonCol}></th>
           </tr>
           </thead>
           <tbody>
               <tr key="Widget Id">
-                <td className={styles.idCol}>Widget Id</td>
-                <td className={styles.colorCol}>Widget Color</td>
-                <td className={styles.sprocketsCol}>Widget sprocketCount</td>
-                <td className={styles.ownerCol}>Widget Owner</td>
+                <td className={styles.idCol}>none</td>
+                <td className={styles.colorCol}>other</td>
+                <td className={styles.ownerCol}>moon@itsatrap.tech</td>
+                <td className={styles.ownerCol}>Moon</td>
+                <td className={styles.sprocketsCol}>Valid</td>
                 <td className={styles.buttonCol}>
                   <button className="btn btn-primary" onClick={this.handleEdit()}>
                     <i className="fa fa-pencil"/> Edit

@@ -44,12 +44,17 @@ router.route('/users')
 	.post(function(req, res) {
 		let nom = req.body.name;
 		console.log(nom);
-		res.json({ message: 'Not Implemented Yet!', name: {nom} });
+		res.json({ message: 'Not Implemented Yet!', name: nom });
 	})
 
 	// get all the bears (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
-		res.json({name: 'Anonymous'});
+// 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@itsatrap.tech
+		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
+									location: 'Paris', email: 'myemail@itsatrap.tech'},
+								{ id: 'none', name: 'other', state: 'Valid',
+								location: 'Moon', email: 'moon@itsatrap.tech'} ];
+		res.json(user);
 	});
 
 // on routes that end in /users/:user_id
