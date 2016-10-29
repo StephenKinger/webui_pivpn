@@ -9,7 +9,7 @@ import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
 import StartStopService from '../ServiceContainer/StartStopService'
 
-import * as serviceActions from '../../actions/service_actions';
+import * as actions from '../../actions/service_actions';
 
 export default class AppGuiOpenVPN extends React.Component {
 
@@ -49,7 +49,7 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
             <Nav navbar pullRight>
-              <StartStopService serviceState={this.props.serviceState} serviceToggle={this.props.serviceToggle}/>
+              <StartStopService serviceState={this.props.serviceState} serviceToggle={this.props.toggleService}/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/>
               </NavItem>
@@ -81,8 +81,8 @@ function mapStateProps(state) {
   return {
     serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
-    auth : state.service.auth
+    auth : state.service.get('auth')
   };
 }
 
-export const AppContainer = connect(mapStateProps, serviceActions)(AppGuiOpenVPN);
+export const AppContainer = connect(mapStateProps, actions)(AppGuiOpenVPN);

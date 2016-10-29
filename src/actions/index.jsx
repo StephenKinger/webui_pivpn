@@ -1,1 +1,1 @@
-export serviceActions from './service_actions';
+export * as actions from './service_actions';
