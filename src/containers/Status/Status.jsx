@@ -21,6 +21,17 @@ export default class Widgets extends Component {
     const styles = require('./Status.scss');
     return (
       <div className="container">
+      <div className="btn-group btn-group-justified" role="group" aria-label="...">
+        <div className="btn-group" role="group">
+          <button type="button" className="btn btn-default">Left</button>
+        </div>
+        <div className="btn-group" role="group">
+          <button type="button" className="btn btn-default">Middle</button>
+        </div>
+        <div className="btn-group" role="group">
+          <button type="button" className="btn btn-default">Right</button>
+        </div>
+      </div>
         <table className="table table-striped">
           <thead>
           <tr>

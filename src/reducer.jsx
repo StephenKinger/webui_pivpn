@@ -1,5 +1,11 @@
-import {Map} from 'immutable';
+import { combineReducers } from 'redux';
+import {serviceReducer} from './reducers/service_reducer';
+import {routerReducer} from 'react-router-redux';
 
-export function reducer(state = Map(), action) {
-  return state;
-}
+/**
+ * combine the reducers
+ // */
+export default combineReducers({
+   service: serviceReducer,
+   routing: routerReducer
+ });

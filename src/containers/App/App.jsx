@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -9,12 +9,14 @@ import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
 import StartStopService from '../ServiceContainer/StartStopService'
 
-import * as actionCreators from '../../action_creators';
-
-
-
+import * as serviceActions from '../../actions/service_actions';
 
 export default class AppGuiOpenVPN extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const styles = require('./App.scss');
     console.log("styles:"+styles);
@@ -47,7 +49,7 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
             <Nav navbar pullRight>
-              <StartStopService/>
+              <StartStopService serviceState={this.props.serviceState} serviceToggle={this.props.serviceToggle}/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/>
               </NavItem>
@@ -66,13 +68,21 @@ export default class AppGuiOpenVPN extends React.Component {
       </div> )
   }
 }
+//
+// AppGuiOpenVPN.propTypes = {
+//   serviceState: React.PropTypes.bool,
+//   users: React.PropTypes.array,
+//   auth:  React.PropTypes.bool
+// };
+// AppGuiOpenVPN.defaultProps = { serviceState: false };
 
 
 function mapStateProps(state) {
   return {
-    todos: state.get('todos'),
-    filter: state.get('filter')
+    serviceState: state.service.get('serviceState'),
+    users: state.service.get('users'),
+    auth : state.service.auth
   };
 }
 
-export const AppContainer = connect(mapStateProps, actionCreators)(AppGuiOpenVPN);
+export const AppContainer = connect(mapStateProps, serviceActions)(AppGuiOpenVPN);

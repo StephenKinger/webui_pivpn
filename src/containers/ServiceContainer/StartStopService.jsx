@@ -7,6 +7,7 @@ export default class StartStopService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {power: 'on'};
+    console.log(this.props);
   }
 
   toggleStatus() {

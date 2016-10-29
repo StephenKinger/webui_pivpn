@@ -1,7 +1,7 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
 import {
-    App,
+    AppContainer,
     NotFound,
     Home,
     About,
@@ -13,7 +13,7 @@ export function getRoutes(store) {
    * Please keep routes in alphabetical order
    */
   return (
-    <Route path="/" component={App}>
+    <Route path="/" component={AppContainer}>
       { /* Home (main) route */ }
      <IndexRoute component={Home}/>
 

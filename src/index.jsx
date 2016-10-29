@@ -3,19 +3,22 @@ import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory} from 'react-router';
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
-import {reducer} from './reducer';
+import reducer from './reducer';
 import {AppContainer} from './containers/App/App';
 import {compose, createStore, combineReducers} from 'redux';
 import {getRoutes} from './routes'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js'; 
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 const createStoreDevTools = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 // const store = createStoreDevTools(reducer);
-const store = createStore(combineReducers({reducer, routing: routerReducer}));
+// const store = createStore(reducer);
+const store = createStore(reducer,  
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const history = syncHistoryWithStore(hashHistory, store);
 
