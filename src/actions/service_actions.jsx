@@ -15,21 +15,3 @@ export function toggleService() {
     type: TOGGLE_SERVICE
   }
 }
-
-/**
- * our test action
- */
-// export function testAction() {
-//   return function(dispatch) {
-//     axios.get(`${API_URL}/helloworld`)
-//     .then(response => {
-//       dispatch({
-//         type: TEST_ACTION,
-//         payload: response.data
-//       });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     })
-//   }
-// }

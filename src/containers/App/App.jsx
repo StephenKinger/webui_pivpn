@@ -19,6 +19,11 @@ export default class AppGuiOpenVPN extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log("Status will mount");
+    this.props.apiStatus();
+  }
+
   render() {
     const styles = require('./App.scss');
     console.log("styles:"+styles);

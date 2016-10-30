@@ -6,13 +6,14 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
-
+var cors       = require('cors');
 // configure app
 app.use(morgan('dev')); // log requests to the console
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 var port     = process.env.PORT || 3000; // set our port
 
@@ -49,6 +50,7 @@ router.route('/users')
 
 	// get all the bears (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
+		console.log('get users');
 // 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@itsatrap.tech
 		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
 									location: 'Paris', email: 'myemail@itsatrap.tech'},

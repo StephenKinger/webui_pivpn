@@ -1,11 +1,12 @@
 import axios from 'axios';
 import {API_STATUS} from './actions_types';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://127.0.0.1:3000/api';
 
 export function apiStatus() {
-  return (dispatch => {
-    axios.get(`${API_URL}/status`)
+  console.log('coucou');
+  return ( (dispatch) => {
+    axios.get(`${API_URL}/users`)
       .then(response => {
         console.log("anwser");
         console.log(response.data);

@@ -5,21 +5,23 @@ import {Router, Route, hashHistory} from 'react-router';
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 import reducer from './reducer';
 import {AppContainer} from './containers/App/App';
-import {compose, createStore, combineReducers} from 'redux';
+import {compose, createStore, combineReducers, applyMiddleware} from 'redux';
 import {getRoutes} from './routes'
 
 import {SET_STATE} from './actions/actions_types'
-import {apiStatus} from './actions/api_actions'
+
+import reduxThunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-const createStoreDevTools = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-)(createStore);
+ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+// const createStoreDevTools = compose(
+//   window.devToolsExtension ? window.devToolsExtension() : f => f
+// )(createStore);
 // const store = createStoreDevTools(reducer);
 // const store = createStore(reducer);
-const store = createStore(reducer,
+const store =  createStoreWithMiddleware(reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -36,7 +38,7 @@ store.dispatch({
     auth: false
   }
 });
-apiStatus();
+
 
 
 ReactDOM.render(
