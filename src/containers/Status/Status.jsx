@@ -16,6 +16,9 @@ export default class Widgets extends Component {
   handleEdit() {
     console.log("hello handle")
   }
+  componentDidMount() {
+    console.log("Status will mount");
+  }
 
   render() {
     const styles = require('./Status.scss');

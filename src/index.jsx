@@ -9,6 +9,7 @@ import {compose, createStore, combineReducers} from 'redux';
 import {getRoutes} from './routes'
 
 import {SET_STATE} from './actions/actions_types'
+import {apiStatus} from './actions/api_actions'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -35,6 +36,8 @@ store.dispatch({
     auth: false
   }
 });
+apiStatus();
+
 
 ReactDOM.render(
   <Provider store={store}>

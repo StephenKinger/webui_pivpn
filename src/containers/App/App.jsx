@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -9,7 +10,8 @@ import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
 import StartStopService from '../ServiceContainer/StartStopService'
 
-import * as actions from '../../actions/service_actions';
+import * as serviceActions from '../../actions/service_actions';
+import * as apiActions from '../../actions/api_actions';
 
 export default class AppGuiOpenVPN extends React.Component {
 
@@ -78,4 +80,8 @@ function mapStateProps(state) {
   };
 }
 
-export const AppContainer = connect(mapStateProps, actions)(AppGuiOpenVPN);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Object.assign({}, serviceActions,apiActions), dispatch)
+}
+
+export const AppContainer = connect(mapStateProps, mapDispatchToProps)(AppGuiOpenVPN);
