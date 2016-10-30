@@ -24,11 +24,11 @@ function setState(state, newState){
   return state.merge(newState);
 }
 
-function toggle_service(state){
+function toggleService(state){
   let serviceState = state.get('serviceState');
   let newServiceState = false;
   if (serviceState == false) {
     newServiceState = true;
   }
-  return state.update('serviceState', newServiceState);
+  return state.update('serviceState', currentServiceState => currentServiceState = newServiceState);
 }

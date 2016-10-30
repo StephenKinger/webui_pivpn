@@ -49,7 +49,7 @@ export default class AppGuiOpenVPN extends React.Component {
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
             <Nav navbar pullRight>
-              <StartStopService serviceState={this.props.serviceState} serviceToggle={this.props.toggleService}/>
+              <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/>
               </NavItem>
@@ -68,13 +68,6 @@ export default class AppGuiOpenVPN extends React.Component {
       </div> )
   }
 }
-//
-// AppGuiOpenVPN.propTypes = {
-//   serviceState: React.PropTypes.bool,
-//   users: React.PropTypes.array,
-//   auth:  React.PropTypes.bool
-// };
-// AppGuiOpenVPN.defaultProps = { serviceState: false };
 
 
 function mapStateProps(state) {
