@@ -16,7 +16,6 @@ export function toggleService() {
   }
 }
 
-
 /**
  * our test action
  */

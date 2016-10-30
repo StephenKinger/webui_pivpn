@@ -5,7 +5,7 @@ import {routerReducer} from 'react-router-redux';
 /**
  * combine the reducers
  // */
-export default combineReducers({
+export default  combineReducers({
    service: serviceReducer,
    routing: routerReducer
  });
