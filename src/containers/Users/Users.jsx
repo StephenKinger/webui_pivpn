@@ -12,8 +12,8 @@ export default class Users extends Component {
   render() {
     const styles = require('./Users.scss');
     return (
-      <div className="container">
-      <div className={'btn-group btn-group-justified '+styles.filters} role="group" aria-label="...">
+      <div className={styles.users + ' container'}>
+      <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
         <div className="btn-group" role="group">
           <button type="button" className="btn btn-default">Left</button>
         </div>

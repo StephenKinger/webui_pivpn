@@ -6,7 +6,6 @@ import Service from '../../components/Service/Service';
 export default class StartStopService extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
 
   render () {

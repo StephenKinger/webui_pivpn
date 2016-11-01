@@ -1,8 +1,4 @@
 .users {
-  .filters {
-    margin-top: 10px;
-    width: 50%;
-  }
   .refreshBtn {
     margin-left: 20px;
   }
@@ -35,5 +31,11 @@
         opacity: 1;
       }
     }
+  }
+  .filtersButtons {
+    margin-top: 10px;
+    width: 50%;
+    float: right;
+
   }
 }
