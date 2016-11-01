@@ -67,6 +67,7 @@ export default class Users extends Component {
             <th className={styles.ownerCol}>Location</th>
             <th className={styles.sprocketsCol}>Status</th>
             <th className={styles.buttonCol}></th>
+            <th className={styles.buttonCol}></th>
           </tr>
           </thead>
           <tbody>
@@ -82,6 +83,14 @@ export default class Users extends Component {
                     <button className="btn btn-primary" onClick={handleEdit(user)}>
                       <i className="fa fa-pencil"/> Edit
                     </button>
+                  </td>
+                  <td className={styles.buttonCol}>
+                  <Button
+                    bsStyle="danger"
+                    disabled={user.get('state') == 'Revoked'}
+                    onClick={handleEdit(user)}>
+                    <i className="fa fa-trash"/> Revoke
+                  </Button>
                   </td>
                 </tr>
               )

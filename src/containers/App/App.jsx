@@ -42,14 +42,20 @@ export default class AppGuiOpenVPN extends React.Component {
           <Navbar.Collapse>
             <Nav navbar>
               <LinkContainer to="/status">
-                <NavItem>Status</NavItem>
+                <NavItem>
+                  <i className="fa fa-tachometer"/> Status
+                </NavItem>
               </LinkContainer>
 
               <LinkContainer to="/users">
-                <NavItem>Users</NavItem>
+                <NavItem>
+                  <i className="fa fa-users"/> Users
+                </NavItem>
               </LinkContainer>
               <LinkContainer to="/about">
-                <NavItem>About</NavItem>
+                <NavItem>
+                  <i className="fa fa-info-circle"/> About
+                </NavItem>
               </LinkContainer>
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
