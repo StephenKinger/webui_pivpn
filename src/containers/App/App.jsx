@@ -79,7 +79,8 @@ function mapStateProps(state) {
   return {
     serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
-    auth : state.service.get('auth')
+    auth : state.service.get('auth'),
+    filter_state: state.service.get('filter_state')
   };
 }
 

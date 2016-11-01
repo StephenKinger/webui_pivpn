@@ -6,13 +6,39 @@ import Button from 'react-bootstrap/lib/Button';
 
 export default class Users extends Component {
 
+  getItems() {
+    if (this.props.users) {
+      return this.props.users.filter(
+        (item) => this.props.filter_state === 'All' || item.get('state') === this.props.filter_state
+      );
+    }
+    return [];
+  }
+
   handleEdit() {
     console.log("hello handle")
+  }
+
+  handleOnFilter(filter) {
+    this.props.filter_users(filter);
+  }
+
+  clicked(user) {
+    console.log("clicked"+{user});
   }
 
 
   render() {
     const styles = require('./Users.scss');
+    const handleEdit = (user) => {
+      return () => this.clicked(user);
+    };
+    const handleSelectFilter = (filter_number) => {
+      return () => this.handleOnFilter(filter_number);
+    };
+    const all_active = (this.props.filter_state == 'All') ? 'active' : '';
+    const valid_active = (this.props.filter_state == 'Valid') ? 'active' : '';
+    const revoked_active = (this.props.filter_state == 'Revoked') ? 'active' : '';
     return (
       <div className={styles.users + ' container'}>
         <div className={styles.createBtn}>
@@ -20,18 +46,18 @@ export default class Users extends Component {
           <i className="fa fa-plus-circle"/> Create New User</Button>
           <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
             <div className="btn-group" role="group">
-              <button type="button" className="btn btn-default">Left</button>
+              <button type="button" className={"btn btn-default "+ all_active} onClick={() => this.props.filter_users('All')}>All</button>
             </div>
             <div className="btn-group" role="group">
-              <button type="button" className="btn btn-default">Middle</button>
+              <button type="button" className={"btn btn-default "+ valid_active} onClick={() => this.props.filter_users('Valid')}>Valid</button>
             </div>
             <div className="btn-group" role="group">
-              <button type="button" className="btn btn-default">Right</button>
+              <button type="button" className={"btn btn-default "+ revoked_active} onClick={() => this.props.filter_users('Revoked')}>Revoked</button>
             </div>
           </div>
         </div>
 
-        {this.props.users && this.props.users.length &&
+        {this.getItems() &&
         <table className="table table-striped">
           <thead>
           <tr>
@@ -45,7 +71,7 @@ export default class Users extends Component {
           </thead>
           <tbody>
             {
-              this.props.users.map( user =>
+              this.getItems().map( user =>
                 <tr key={user.get('id')}>
                   <td className={styles.idCol}>{user.get('id')}</td>
                   <td className={styles.colorCol}>{user.get('name')}</td>
@@ -53,7 +79,7 @@ export default class Users extends Component {
                   <td className={styles.ownerCol}>{user.get('location')}</td>
                   <td className={styles.sprocketsCol}>{user.get('state')}</td>
                   <td className={styles.buttonCol}>
-                    <button className="btn btn-primary" onClick={this.handleEdit()}>
+                    <button className="btn btn-primary" onClick={handleEdit(user)}>
                       <i className="fa fa-pencil"/> Edit
                     </button>
                   </td>

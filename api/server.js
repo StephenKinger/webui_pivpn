@@ -54,8 +54,10 @@ router.route('/users')
 // 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@
 		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
 									location: 'Paris', email: 'myemail@mail'},
-								{ id: 'none', name: 'other', state: 'Valid',
-								location: 'Moon', email: 'moon@mail'} ];
+								{ id: 'none', name: 'other', state: 'Revoked',
+								location: 'Moon', email: 'moon@mail'},
+								{ id: 'titi', name: 'other', state: 'Valid',
+ 								location: 'Moon', email: 'sun@mail'}];
 		res.json(user);
 	});
 
