@@ -1,5 +1,6 @@
 .users {
-  .refreshBtn {
+  .createBtn {
+    margin-top: 10px;
     margin-left: 20px;
   }
   .idCol {
@@ -33,9 +34,8 @@
     }
   }
   .filtersButtons {
-    margin-top: 10px;
+    // margin-top: 10px;
     width: 50%;
     float: right;
-
   }
 }

@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Button from 'react-bootstrap/lib/Button';
 
 export default class Users extends Component {
 
@@ -13,11 +15,23 @@ export default class Users extends Component {
     const styles = require('./Users.scss');
     return (
       <div className={styles.users + ' container'}>
-      <ButtonGroup className={styles.filtersButtons}>
-        <Button>All<Button/>
-        <Button>Active<Button/>
-        <Button>Revoked<Button/>
-      <ButtonGroup/>
+        <div className={styles.createBtn}>
+          <Button bsStyle="primary">
+          <i className="fa fa-plus-circle"/> Create New User</Button>
+          <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default">Left</button>
+            </div>
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default">Middle</button>
+            </div>
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default">Right</button>
+            </div>
+          </div>
+        </div>
+
+        {this.props.users && this.props.users.length &&
         <table className="table table-striped">
           <thead>
           <tr>
@@ -47,7 +61,7 @@ export default class Users extends Component {
               )
             }
           </tbody>
-        </table>
+        </table>}
       </div>
     )
   }
