@@ -34,10 +34,14 @@ store.dispatch({
       { id: '260924094424Z', name: 'pivpn', state: 'Valid',
   									location: 'Paris', email: 'myemail@mail'},
       { id: '1545', name: 'none', state: 'Valid',
+                    location: 'Paris', email: 'test@mail'},
+      { id: '1515', name: 'none', state: 'Revoked',
                     location: 'Paris', email: 'test@mail'}
     ],
     serviceState: false,
-    auth: false
+    auth: false,
+    filter_state: 'All',
+    addingUser: false
   }
 });
 

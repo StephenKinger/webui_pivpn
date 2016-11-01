@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {TOGGLE_SERVICE, SET_STATE, API_STATUS} from '../actions/actions_types';
+import {TOGGLE_SERVICE, SET_STATE, API_STATUS, FILTER_USERS, ADD_USER} from '../actions/actions_types';
 import * as actions from '../actions/';
 // import {toggleService} from '../actions/action_types';
 import {Map} from 'immutable';
@@ -17,8 +17,20 @@ import {Map} from 'immutable';
       return toggleService(state);
     case API_STATUS:
       return update_status(state, action.payload);
+    case FILTER_USERS:
+      return update_filter(state, action.filter_state);
+    case ADD_USER:
+      return addingUser(state);
   }
   return state;
+}
+
+function addingUser(state) {
+  return state.update('addingUser', (addingUser) => addingUser = !addingUser);
+}
+
+function update_filter(state, newFilter) {
+  return  state.update('filter_state', (filter_state) => filter_state = newFilter);
 }
 
 function setState(state, newState){

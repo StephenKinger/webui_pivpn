@@ -42,14 +42,20 @@ export default class AppGuiOpenVPN extends React.Component {
           <Navbar.Collapse>
             <Nav navbar>
               <LinkContainer to="/status">
-                <NavItem>Status</NavItem>
+                <NavItem>
+                  <i className="fa fa-tachometer"/> Status
+                </NavItem>
               </LinkContainer>
 
               <LinkContainer to="/users">
-                <NavItem>Users</NavItem>
+                <NavItem>
+                  <i className="fa fa-users"/> Users
+                </NavItem>
               </LinkContainer>
               <LinkContainer to="/about">
-                <NavItem>About</NavItem>
+                <NavItem>
+                  <i className="fa fa-info-circle"/> About
+                </NavItem>
               </LinkContainer>
             </Nav>
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
@@ -79,7 +85,9 @@ function mapStateProps(state) {
   return {
     serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
-    auth : state.service.get('auth')
+    auth : state.service.get('auth'),
+    filter_state: state.service.get('filter_state'),
+    addingUser: state.service.get('addingUser')
   };
 }
 
