@@ -5,7 +5,8 @@ import {
     NotFound,
     Home,
     About,
-    Status
+    Status,
+    Users
   } from './containers';
 
 export function getRoutes(store) {
@@ -21,6 +22,7 @@ export function getRoutes(store) {
       { /* Routes */ }
       <Route path="about" component={About}/>
       <Route path="status" component={Status}/>
+      <Route path="users" component={Users}/>
       { /* <Route path="about" component={Survey}/> */ }
 
       { /* Catch all route */ }

@@ -43,7 +43,7 @@ router.route('/users')
 
 	// create a new user (accessed at POST http://localhost:8080/api/users)
 	.post(function(req, res) {
-		let nom = req.body.name;
+		var nom = req.body.name;
 		console.log(nom);
 		res.json({ message: 'Not Implemented Yet!', name: nom });
 	})
@@ -51,11 +51,11 @@ router.route('/users')
 	// get all the bears (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
 		console.log('get users');
-// 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@itsatrap.tech
+// 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@
 		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
-									location: 'Paris', email: 'myemail@itsatrap.tech'},
+									location: 'Paris', email: 'myemail@mail'},
 								{ id: 'none', name: 'other', state: 'Valid',
-								location: 'Moon', email: 'moon@itsatrap.tech'} ];
+								location: 'Moon', email: 'moon@mail'} ];
 		res.json(user);
 	});
 

@@ -32,7 +32,9 @@ store.dispatch({
   state: {
     users: [
       { id: '260924094424Z', name: 'pivpn', state: 'Valid',
-  									location: 'Paris', email: 'myemail@itsatrap.tech'}
+  									location: 'Paris', email: 'myemail@mail'},
+      { id: '1545', name: 'none', state: 'Valid',
+                    location: 'Paris', email: 'test@mail'}
     ],
     serviceState: false,
     auth: false
@@ -55,7 +57,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (!window.devToolsExtension) {
-  console.log("coucou")
   const DevTools = require('./containers/DevTools/DevTools');
   ReactDOM.render(
     <Provider store={store} key="provider">

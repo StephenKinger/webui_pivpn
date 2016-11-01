@@ -20,13 +20,11 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Status will mount");
     this.props.apiStatus();
   }
 
   render() {
     const styles = require('./App.scss');
-    console.log("styles:"+styles);
     return (
       <div className="app">
       <Helmet title="OpenVPN front end"/>
@@ -64,7 +62,7 @@ export default class AppGuiOpenVPN extends React.Component {
           </Navbar.Collapse>
         </Navbar>
         <div className={styles.appContent}>
-          {this.props.children}
+          {React.cloneElement(this.props.children, this.props)}
         </div>
         <div className="well text-center">
           Have questions? Ask for help <a

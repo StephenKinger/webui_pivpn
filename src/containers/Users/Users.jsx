@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
 
-export default class Widgets extends Component {
+export default class Users extends Component {
 
   handleEdit() {
     console.log("hello handle")
@@ -10,10 +10,10 @@ export default class Widgets extends Component {
 
 
   render() {
-    const styles = require('./Status.scss');
+    const styles = require('./Users.scss');
     return (
       <div className="container">
-      <div className="btn-group btn-group-justified" role="group" aria-label="...">
+      <div className={'btn-group btn-group-justified '+styles.filters} role="group" aria-label="...">
         <div className="btn-group" role="group">
           <button type="button" className="btn btn-default">Left</button>
         </div>
@@ -36,18 +36,22 @@ export default class Widgets extends Component {
           </tr>
           </thead>
           <tbody>
-              <tr key="Widget Id">
-                <td className={styles.idCol}>none</td>
-                <td className={styles.colorCol}>other</td>
-                <td className={styles.ownerCol}>moon@mail.tech</td>
-                <td className={styles.ownerCol}>Moon</td>
-                <td className={styles.sprocketsCol}>Valid</td>
-                <td className={styles.buttonCol}>
-                  <button className="btn btn-primary" onClick={this.handleEdit()}>
-                    <i className="fa fa-pencil"/> Edit
-                  </button>
-                </td>
-              </tr>
+            {
+              this.props.users.map( user =>
+                <tr key={user.get('id')}>
+                  <td className={styles.idCol}>{user.get('id')}</td>
+                  <td className={styles.colorCol}>{user.get('name')}</td>
+                  <td className={styles.ownerCol}>{user.get('email')}</td>
+                  <td className={styles.ownerCol}>{user.get('location')}</td>
+                  <td className={styles.sprocketsCol}>{user.get('state')}</td>
+                  <td className={styles.buttonCol}>
+                    <button className="btn btn-primary" onClick={this.handleEdit()}>
+                      <i className="fa fa-pencil"/> Edit
+                    </button>
+                  </td>
+                </tr>
+              )
+            }
           </tbody>
         </table>
       </div>
