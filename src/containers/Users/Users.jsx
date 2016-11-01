@@ -13,17 +13,11 @@ export default class Users extends Component {
     const styles = require('./Users.scss');
     return (
       <div className={styles.users + ' container'}>
-      <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
-        <div className="btn-group" role="group">
-          <button type="button" className="btn btn-default">Left</button>
-        </div>
-        <div className="btn-group" role="group">
-          <button type="button" className="btn btn-default">Middle</button>
-        </div>
-        <div className="btn-group" role="group">
-          <button type="button" className="btn btn-default">Right</button>
-        </div>
-      </div>
+      <ButtonGroup className={styles.filtersButtons}>
+        <Button>All<Button/>
+        <Button>Active<Button/>
+        <Button>Revoked<Button/>
+      <ButtonGroup/>
         <table className="table table-striped">
           <thead>
           <tr>
