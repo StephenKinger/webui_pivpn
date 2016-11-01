@@ -2,7 +2,7 @@
  * make our imports
  */
 // import axios from 'axios';
-import {TOGGLE_SERVICE, FILTER_USERS} from './actions_types'
+import {TOGGLE_SERVICE, FILTER_USERS, ADD_USER} from './actions_types'
 
 /**
  * define our root api route
@@ -19,5 +19,11 @@ export function filter_users(selectedFilter) {
   return {
     type: FILTER_USERS,
     filter_state: selectedFilter
+  }
+}
+
+export function addUser() {
+  return {
+    type: ADD_USER
   }
 }

@@ -40,7 +40,8 @@ store.dispatch({
     ],
     serviceState: false,
     auth: false,
-    filter_state: 'All'
+    filter_state: 'All',
+    addingUser: false
   }
 });
 
