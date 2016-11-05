@@ -43,9 +43,20 @@ router.route('/users')
 
 	// create a new user (accessed at POST http://localhost:8080/api/users)
 	.post(function(req, res) {
-		var nom = req.body.name;
+		var nom = req.body;
 		console.log(nom);
-		res.json({ message: 'Not Implemented Yet!', name: nom });
+		//res.json({ message: 'Not Implemented Yet!', name: nom });
+
+		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
+									location: 'Paris', email: 'myemail@mail'},
+								{ id: 'none', name: 'other', state: 'Revoked',
+								location: 'Moon', email: 'moon@mail'},
+								{ id: 'titi', name: 'other', state: 'Valid',
+ 								location: 'Moon', email: 'sun@mail'},
+								{ id: 'new', name : req.body.name, state: 'Valid',
+								location: req.body.location, email: req.body.email}];
+		res.json(user);
+
 	})
 
 	// get all the bears (accessed at GET http://localhost:8080/api/users)

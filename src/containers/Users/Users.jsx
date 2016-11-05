@@ -51,7 +51,7 @@ export default class Users extends Component {
             <i className="fa fa-plus-circle"/> Create New User
           </Button>
           {this.props.addingUser &&
-            <AddUserForm/>
+            <AddUserForm apiCreateUser={this.props.apiCreateUser}/>
 
           }
           <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
