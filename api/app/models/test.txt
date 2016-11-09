@@ -1,0 +1,5 @@
+V       260924152324Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=unnom/name=EasyRSA/emailAddress=unnom.@.com
+V       260485083344Z           02      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=unautrenom/name=EasyRSA/emailAddress=unautrenom@.com
+V       260925085154Z           03      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=moi/name=EasyRSA/emailAddress=moi@.com
+R       260925659500Z           04      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=toi/name=EasyRSA/emailAddress=toi@.com
+V       260925111144Z           05      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=MonNomDeClient/name=EasyRSA/emailAddress=Monomdeclient@.com
