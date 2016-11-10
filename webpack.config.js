@@ -5,7 +5,7 @@ module.exports = {
   entry: [
     'jquery',
     'bootstrap',
-    'webpack-dev-server/client?http://localhost:8090', // Setting the URL for the hot reload
+    'webpack-dev-server/client?http://localhost:8091', // Setting the URL for the hot reload
     'webpack/hot/only-dev-server', // Reload only the dev server,
     'font-awesome-webpack!./config/font-awesome.config.js',
     './src/index.jsx'
