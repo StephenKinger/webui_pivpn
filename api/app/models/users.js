@@ -31,6 +31,10 @@ function addUser(user) {
       console.log(block);
     }
   });
+  
+  child.stderr.on('data', function(block){
+    console.log(block);
+  });
 
   child.on('close', function () {
     console.log("hjdfsdf");
