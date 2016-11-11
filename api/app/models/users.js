@@ -13,7 +13,8 @@ function User() {
 function addUser(user) {
 
     spawn = require( 'child_process' ).spawn,
-    ls = spawn( 'sh', [ 'addUser.sh' ] );
+    ls = spawn( 'pwd' );
+    // ls = spawn( 'sh', [ 'addUser.sh' ] );
 
     ls.stdout.on( 'data', data => {
         console.log( `stdout: ${data}` );
