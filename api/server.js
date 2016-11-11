@@ -1,5 +1,12 @@
-// BASE SETUP
-// =============================================================================
+/**
+ * @file defines all server routes for the Users managed in OpenVPN
+ * @name api.server.js
+ * @author Stephen Kinger 
+ */
+ 
+/**
+ * @module api
+ */
 
 // call the packages we need
 var express    = require('express');
@@ -7,7 +14,7 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
-// configure app
+
 app.use(morgan('dev')); // log requests to the console
 
 // configure body parser
@@ -17,6 +24,11 @@ app.use(cors());
 
 var port     = process.env.PORT || 3000; // set our port
 
+/**
+ * User objects and functions
+ * @var {Users}
+ * @inner
+ */
 var Users     = require('./app/models/users');
 
 // ROUTES FOR OUR API
@@ -37,8 +49,14 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
 });
 
-// on routes that end in /users
-// ----------------------------------------------------
+/**
+   * Users REST API User end-point
+   * @endpoint /api/users
+   * @name apiUsers
+   * @version v1
+   * @since v1
+   * @description Users REST API user end-point
+   */
 router.route('/users')
 
 	// create a new user (accessed at POST http://localhost:8080/api/users)
