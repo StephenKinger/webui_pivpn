@@ -67,7 +67,7 @@ router.route('/users')
 	    console.log("post request");
 		var nom = req.body;
 		console.log(nom);
-		Users.createUser()
+		Users.addUser(nom)
 		//		userFactory(10, "moi", 'titi@fmail', 'paris', 'valid');
 		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 		res.json(userList);
