@@ -12,36 +12,20 @@ function User() {
 
 function addUser(user) {
 
-  var spawn = require('child_process').spawn;
-//   var child = spawn('sudo', ['/opt/pivpn/makeOVPN.sh']);
-  var child = spawn('ls');
-  // executes `pwd`
-  child.stdout.on('data', function(block){
-    if (block == 'Enter a Name for the Client'){
-      child.stdin.write('Myname\n');
-      console.log(block);
-    }
+    spawn = require( 'child_process' ).spawn,
+    ls = spawn( 'sh', [ 'addUser.sh' ] );
 
-    if (block == 'Enter the password for the client:') {
-      child.stdin.write('MyPassword\n');
-      console.log(block);
-    }
-
-    if (block == 'Enter the password again to verify:') {
-      child.stdin.write('MyPassword\n');
-      console.log(block);
-    }
-  });
-  
-  child.stderr.on('data', function(block){
-    console.log(block);
-  });
-
-  child.on('close', function () {
-    console.log("hjdfsdf");
-    // manipulate content
-  });
-
+    ls.stdout.on( 'data', data => {
+        console.log( `stdout: ${data}` );
+    });
+    
+    ls.stderr.on( 'data', data => {
+        console.log( `stderr: ${data}` );
+    });
+    
+    ls.on( 'close', code => {
+        console.log( `child process exited with code ${code}` );
+    });
 }
 
 function processFile(inputFile) {
