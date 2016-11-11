@@ -66,3 +66,4 @@ function processFile(inputFile) {
 
 exports.User = User;
 exports.processUserFile = processFile;
+exports.addUser = addUser;
