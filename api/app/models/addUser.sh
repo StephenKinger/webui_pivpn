@@ -1,7 +1,7 @@
 #!/bin/sh
 # Create OVPN Client through pivpn
 
-addUser {
+addUser() {
 
     # Override key def
     touch "${NAME}_creating"
