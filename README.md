@@ -7,4 +7,4 @@ webui_pivpn
   - Setup the user revocation (API)
 
 
-// Add read rights on /etc/openvpn/easy-rsa/keys/index.txt // sudo chmod 744 keys
+// Add read rights on /etc/openvpn/easy-rsa/keys/index.txt // sudo chmod 755 keys
