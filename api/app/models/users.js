@@ -56,6 +56,7 @@ function processFile(inputFile) {
       else if(/^R/.test(line) == true) {
         userRead.state = 'Revoked';
       }
+      console.log(splitter[0].split(' '));
       userRead.id = splitter[0].split(' ')[7];
       myUserList.push(userRead);
 
