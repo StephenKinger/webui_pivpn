@@ -18,7 +18,7 @@ function addUser(user) {
     var cmdAdd = './api/app/models/addUser.sh ' + userToAdd;
     console.log(cmdAdd);
     //ls = spawn( 'pwd' );
-    ls = spawn( 'bash', [ './api/app/models/addUser.sh titi' ] );
+    ls = spawn( 'bash', [ './api/app/models/addUser.sh', 'titi ] );
 
     ls.stdout.on( 'data', data => {
         console.log( `stdout: ${data}` );
