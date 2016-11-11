@@ -64,6 +64,7 @@ router.route('/users')
    * Create a new user
    */
 	.post(function(req, res) {
+	    console.log("post request");
 		var nom = req.body;
 		console.log(nom);
 		//		userFactory(10, "moi", 'titi@fmail', 'paris', 'valid');
