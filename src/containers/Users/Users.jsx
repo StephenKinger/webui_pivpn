@@ -34,6 +34,7 @@ export default class Users extends Component {
 
   _handleRevoke(user) {
     console.log('revoque' + user);
+    this.props.apiRevokeUser(user.get('name'));
   }
 
   _handleOnFilter(filter) {
