@@ -61,7 +61,7 @@ router.route('/users')
 
 	// get all the bears (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
-		userList = Users.processUserFile("./api/app/models/test.txt");
+		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 		res.json(userList);
 	});
 
