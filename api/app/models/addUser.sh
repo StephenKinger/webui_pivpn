@@ -1,23 +1,23 @@
 #!/bin/sh
 # Create OVPN Client through pivpn
 
-addUser() {
+# addUser() {
 
-    # Override key def
-    touch "${NAME}_creating"
+#     # Override key def
+#     touch "${NAME}_creating"
 
-    #Build the client key
-    expect << EOF
-    set timeout 90
-    spawn  pivpn add
-    expect "Enter a Name for the Client:  " { send "${NAME}\r" }
-    expect "Enter the password for the client:  " { send "${PASSWD}\r" }
-    expect "Enter the password again to verify:  " { send "${PASSWD}\r" }
-    expect eof
-EOF
+#     #Build the client key
+#     expect << EOF
+#     set timeout 90
+#     spawn  pivpn add
+#     expect "Enter a Name for the Client:  " { send "${NAME}\r" }
+#     expect "Enter the password for the client:  " { send "${PASSWD}\r" }
+#     expect "Enter the password again to verify:  " { send "${PASSWD}\r" }
+#     expect eof
+# EOF
 
-    rm "${NAME}_creating"
-}
+#     rm "${NAME}_creating"
+# }
 
 if [ $# -ne 2 ]
 then
