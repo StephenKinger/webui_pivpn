@@ -65,11 +65,11 @@ router.route('/users')
    */
 	.post(function(req, res) {
 	    console.log("post request");
-		var nom = req.body;
-		console.log(nom);
-		Users.addUser(nom)
-		//		userFactory(10, "moi", 'titi@fmail', 'paris', 'valid');
+		var newUser = req.body;
+		console.log(newUser);
+		Users.addUser(newUser);
 		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+// 		var userAdded = Users.User()
 		res.json(userList);
 	})
 
@@ -83,12 +83,12 @@ router.route('/users')
 	});
 
 /**
- * On routes that end in /users/:user_id
+ * On routes that end in /users/:name
  * @param {Object} employee - The employee who is responsible for the project.
  * @param {string} employee.name - The name of the employee.
  * @param {string} employee.department - The employee's department.
  */
-router.route('/users/:user_id')
+router.route('/users/:name')
 
 	/**
 	 * User getter
@@ -97,12 +97,21 @@ router.route('/users/:user_id')
 	 * @name.
 	 */
  	.get(function(req, res) {
-		res.json({name: 'Anonymous'});
+ 	  //console.log(req);
+ 	  console.log(req.params.name);
+ 	  //  var fs = require('fs');
+ 	  //  fs.read
+// 		res.json({name: 'Anonymous'});
+      var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
+      res.download(file); // Set disposition and send it.
 	})
 
 	// update the user with this id
 	.put(function(req, res) {
-		res.json({ message: 'Not Implemented Yet!' });
+	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
+	   Users.updateUser(req.params.name);
+	   userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+	   res.json(userList);
 	})
 
 	// delete the bear with this id

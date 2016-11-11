@@ -28,6 +28,21 @@ function addUser(user) {
     });
 }
 
+function updateUser(userName) {
+    var nexpect = require('nexpect');
+    nexpect.spawn('bash', ['sudo','/opt/pivpn/', 'removeOVPN.sh'])
+      .wait("::: Please enter the Name of the client to be revoked from the list above:")
+      .sendline(userName)
+      .run(function (err) {
+        if (!err) {
+          console.log("revoked (or not), process exited");
+        }
+        else {
+          console.log(err)
+        }
+      });
+}
+
 function processFile(inputFile) {
     var fs = require('fs');
     var myUserList = [];
@@ -55,4 +70,5 @@ function processFile(inputFile) {
 
 exports.User = User;
 exports.processUserFile = processFile;
+exports.updateUser = updateUser;
 exports.addUser = addUser;
