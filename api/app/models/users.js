@@ -11,10 +11,14 @@ function User() {
 
 
 function addUser(user) {
-
+    console.log(user)
     spawn = require( 'child_process' ).spawn,
+    var userToAdd = user.name + ' ' + user.passwd;
+    console.log(userToAdd);
+    var cmdAdd = './api/app/models/addUser.sh ' + userToAdd;
+    console.log(cmdAdd);
     //ls = spawn( 'pwd' );
-    ls = spawn( 'bash', [ './api/app/models/addUser.sh' ] );
+    ls = spawn( 'bash', [ './api/app/models/addUser.sh titi' ] );
 
     ls.stdout.on( 'data', data => {
         console.log( `stdout: ${data}` );
