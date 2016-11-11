@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {API_GET_USERS, API_POST_USERS} from './actions_types';
 
-const API_URL = 'http://127.0.0.1:3000/api';
+const API_URL = 'http://192.168.1.23:3000/api';
 
 export function apiStatus() {
   return ( (dispatch) => {
