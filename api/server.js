@@ -97,7 +97,13 @@ router.route('/users/:user_id')
 	 * @name.
 	 */
  	.get(function(req, res) {
-		res.json({name: 'Anonymous'});
+ 	  console.log(req);
+ 	  console.log(req.body.name);
+ 	  //  var fs = require('fs');
+ 	  //  fs.read
+// 		res.json({name: 'Anonymous'});
+      var file = '/home/steph/ovpns/' + req.body.name;
+      res.download(file); // Set disposition and send it.
 	})
 
 	// update the user with this id
