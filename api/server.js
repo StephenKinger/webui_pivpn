@@ -60,6 +60,9 @@ router.get('/', function(req, res) {
 router.route('/users')
 
 	// create a new user (accessed at POST http://localhost:8080/api/users)
+  /**
+   * Create a new user
+   */
 	.post(function(req, res) {
 		var nom = req.body;
 		console.log(nom);
@@ -68,7 +71,10 @@ router.route('/users')
 		res.json(userList);
 	})
 
-	// get all the bears (accessed at GET http://localhost:8080/api/users)
+
+  /**
+   * Return the declared user list
+   */
 	.get(function(req, res) {
 		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 		res.json(userList);
