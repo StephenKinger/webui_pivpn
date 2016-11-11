@@ -19,11 +19,13 @@
 #     rm "${NAME}_creating"
 # }
 
-if [ $# -ne 2 ]; then
-    echo "Usage is ./addUser.sh <Name> <Passwd>"
-    exit -1
+# if [ $# -ne 2 ]; then
+#     echo "Usage is ./addUser.sh <Name> <Passwd>"
+#     exit -1
+# fi
+if [ $# -ne 1 ]; 
+    then echo "illegal number of parameters"
 fi
-
 
 # NAME=$1
 # PASSWD=$2
