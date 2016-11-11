@@ -1,9 +1,10 @@
 import axios from 'axios';
-import {API_GET_USERS, API_POST_USERS} from './actions_types';
+import {API_GET_USERS, API_POST_USERS, API_GET_USER_FILE, API_PUT_REVOKE_USER} from './actions_types';
 
-const API_URL = 'http://192.168.1.23:3000/api';
+import {API_URL} from '../config';
 
 export function apiStatus() {
+  console.log(API_URL)
   return ( (dispatch) => {
     axios.get(`${API_URL}/users`)
       .then(response => {
@@ -26,6 +27,23 @@ export function apiCreateUser(data) {
       .then(response => {
         dispatch({
         type: API_POST_USERS,
+        payload: response.data
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  })
+}
+
+export function apiRevokeUser(data) {
+  console.log("apiRevokeUser");
+  console.log(data);
+  return ( (dispatch) => {
+    axios.put(`${API_URL}/users/${data}`)
+      .then(response => {
+        dispatch({
+        type: API_PUT_REVOKE_USER,
         payload: response.data
         });
       })
