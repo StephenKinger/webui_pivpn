@@ -12,7 +12,7 @@ function User() {
 
 function addUser(user) {
     console.log(user)
-    spawn = require( 'child_process' ).spawn,
+    spawn = require( 'child_process' ).spawn;
     var userToAdd = user.name + ' ' + user.passwd;
     console.log(userToAdd);
     var cmdAdd = './api/app/models/addUser.sh ' + userToAdd;
