@@ -10,34 +10,34 @@ function User() {
 }
 
 
-// function addUser(user) {
-//   var sys = require('sys')
-//   var spawn = require('child_process').spawn;
-//   var child = spawn("makeOVPN");
-//   // executes `pwd`
-//   child.stdout.on('data', function(block){
-//     if (block == 'Enter a Name for the Client'){
-//       child.stdin.write('Myname\n');
-//       console.log(block);
-//     }
-//
-//     if (block == 'Enter the password for the client:') {
-//       child.stdin.write('MyPassword\n');
-//       console.log(block);
-//     }
-//
-//     if (block == 'Enter the password again to verify:') {
-//       child.stdin.write('MyPassword\n');
-//       console.log(block);
-//     }
-//   });
-// 
-//   child.on('close', function () {
-//     console.log("hjdfsdf");
-//     // manipulate content
-//   });
-//
-// }
+function addUser(user) {
+  var sys = require('sys')
+  var spawn = require('child_process').spawn;
+  var child = spawn("sudo /opt/pivpn/makeOVPN.sh");
+  // executes `pwd`
+  child.stdout.on('data', function(block){
+    if (block == 'Enter a Name for the Client'){
+      child.stdin.write('Myname\n');
+      console.log(block);
+    }
+
+    if (block == 'Enter the password for the client:') {
+      child.stdin.write('MyPassword\n');
+      console.log(block);
+    }
+
+    if (block == 'Enter the password again to verify:') {
+      child.stdin.write('MyPassword\n');
+      console.log(block);
+    }
+  });
+
+  child.on('close', function () {
+    console.log("hjdfsdf");
+    // manipulate content
+  });
+
+}
 
 function processFile(inputFile) {
     var fs = require('fs');
