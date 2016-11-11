@@ -45,18 +45,9 @@ router.route('/users')
 	.post(function(req, res) {
 		var nom = req.body;
 		console.log(nom);
-		//res.json({ message: 'Not Implemented Yet!', name: nom });
-
-		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
-									location: 'Paris', email: 'myemail@mail'},
-								{ id: 'none', name: 'other', state: 'Revoked',
-								location: 'Moon', email: 'moon@mail'},
-								{ id: 'titi', name: 'other', state: 'Valid',
- 								location: 'Moon', email: 'sun@mail'},
-								{ id: 'new', name : req.body.name, state: 'Valid',
-								location: req.body.location, email: req.body.email}];
-		res.json(user);
-//		userFactory(10, "moi", 'titi@fmail', 'paris', 'valid');
+		//		userFactory(10, "moi", 'titi@fmail', 'paris', 'valid');
+		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+		res.json(userList);
 	})
 
 	// get all the bears (accessed at GET http://localhost:8080/api/users)
