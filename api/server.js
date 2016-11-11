@@ -102,7 +102,7 @@ router.route('/users/:name')
  	  //  var fs = require('fs');
  	  //  fs.read
 // 		res.json({name: 'Anonymous'});
-      var file = '/home/steph/ovpns/' + req.params.name;
+      var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
       res.download(file); // Set disposition and send it.
 	})
 
