@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import AddUserForm from '../../components/Users/AddUserForm';
+import {API_URL} from '../../config'
 
 export default class Users extends Component {
 
@@ -16,15 +17,27 @@ export default class Users extends Component {
     return [];
   }
 
-  handleEdit() {
+  _handleDownload(user) {
+    console.log('handleDownlaod ' + user);
+    var name = user.get('name');
+    console.log(name);
+    window.location.href = API_URL + '/users/' + name;
+  }
+
+  _handleEdit() {
     console.log("hello handle")
   }
 
-  handleAdd() {
-    this.props.addUser();
+  // handleAdd() {
+  //   this.props.addUser();
+  // }
+
+  _handleRevoke(user) {
+    console.log('revoque' + user);
+    this.props.apiRevokeUser(user.get('name'));
   }
 
-  handleOnFilter(filter) {
+  _handleOnFilter(filter) {
     this.props.filter_users(filter);
   }
 
@@ -35,12 +48,6 @@ export default class Users extends Component {
 
   render() {
     const styles = require('./Users.scss');
-    const handleEdit = (user) => {
-      return () => this.clicked(user);
-    };
-    const handleSelectFilter = (filter_number) => {
-      return () => this.handleOnFilter(filter_number);
-    };
     const all_active = (this.props.filter_state == 'All') ? 'active' : '';
     const valid_active = (this.props.filter_state == 'Valid') ? 'active' : '';
     const revoked_active = (this.props.filter_state == 'Revoked') ? 'active' : '';
@@ -51,7 +58,7 @@ export default class Users extends Component {
             <i className="fa fa-plus-circle"/> Create New User
           </Button>
           {this.props.addingUser &&
-            <AddUserForm/>
+            <AddUserForm apiCreateUser={this.props.apiCreateUser}/>
 
           }
           <div className={styles.filtersButtons+' btn-group btn-group-justified'} role="group" aria-label="...">
@@ -78,6 +85,7 @@ export default class Users extends Component {
             <th className={styles.stateCol}>Status</th>
             <th className={styles.buttonCol1}></th>
             <th className={styles.buttonCol2}></th>
+            <th className={styles.buttonCol3}></th>
           </tr>
           </thead>
           <tbody>
@@ -90,15 +98,24 @@ export default class Users extends Component {
                   <td className={styles.locationCol}>{user.get('location')}</td>
                   <td className={styles.stateCol}>{user.get('state')}</td>
                   <td className={styles.buttonCol1}>
-                    <button className="btn btn-primary" onClick={handleEdit(user)}>
-                      <i className="fa fa-pencil"/> Edit
-                    </button>
+                  <Button
+                    bsStyle="success"
+                      onClick={this._handleDownload.bind(this, user)}>
+                    <i className="fa fa-download"/> Download
+                  </Button>
                   </td>
                   <td className={styles.buttonCol2}>
                   <Button
+                    bsStyle="primary"
+                      onClick={this._handleEdit.bind(this, user)}>
+                    <i className="fa fa-pencil"/> Edit
+                  </Button>
+                  </td>
+                  <td className={styles.buttonCol3}>
+                  <Button
                     bsStyle="danger"
                     disabled={user.get('state') == 'Revoked'}
-                    onClick={handleEdit(user)}>
+                    onClick={this._handleRevoke.bind(this, user)}>
                     <i className="fa fa-trash"/> Revoke
                   </Button>
                   </td>

@@ -13,10 +13,10 @@ export default class AddUserForm extends Component {
   constructor(props) {
   super(props);
     this.state = {
-      'formHorizontalName': '',
-      'formHorizontalEmail': '',
-      'formHorizontalPassword': '',
-      'formHorizontalPlace': ''
+      'name': '',
+      'email': '',
+      'passwd': '',
+      'location': ''
       }
   }
 
@@ -25,7 +25,8 @@ export default class AddUserForm extends Component {
     if (e) {
            e.preventDefault();
        }
-
+       console.log(this.state);
+       this.props.apiCreateUser(this.state);
     //TODO send a post to an API.
   }
 
@@ -38,21 +39,21 @@ export default class AddUserForm extends Component {
   }
 
   onChange(evt) {
-    if (evt.target.id == 'formHorizontalName')
-      this.setState({ 'formHorizontalName' :  evt.target.value});
-    if (evt.target.id == 'formHorizontalEmail')
-      this.setState({ 'formHorizontalEmail' :  evt.target.value});
-    if (evt.target.id == 'formHorizontalPassword')
-      this.setState({ 'formHorizontalPassword' :  evt.target.value});
-    if (evt.target.id == 'formHorizontalPlace')
-      this.setState({ 'formHorizontalPlace' :  evt.target.value});
+    if (evt.target.id == 'name')
+      this.setState({ 'name' :  evt.target.value});
+    if (evt.target.id == 'email')
+      this.setState({ 'email' :  evt.target.value});
+    if (evt.target.id == 'passwd')
+      this.setState({ 'passwd' :  evt.target.value});
+    if (evt.target.id == 'location')
+      this.setState({ 'location' :  evt.target.value});
 
   }
 
   render() {
     return (
       <Form horizontal onSubmit={this._handleValidSubmit.bind(this)}>
-        <FormGroup controlId="formHorizontalName">
+        <FormGroup controlId="name">
           <Col componentClass={ControlLabel} sm={2}>
             Name
           </Col>
@@ -60,7 +61,7 @@ export default class AddUserForm extends Component {
             <FormControl type="text" placeholder="Name" onChange={this.onChange.bind(this)} />
           </Col>
         </FormGroup>
-        <FormGroup controlId="formHorizontalEmail">
+        <FormGroup controlId="email">
           <Col componentClass={ControlLabel} sm={2}>
             Email
           </Col>
@@ -69,7 +70,7 @@ export default class AddUserForm extends Component {
           </Col>
         </FormGroup>
 
-        <FormGroup controlId="formHorizontalPassword" >
+        <FormGroup controlId="passwd" >
           <Col componentClass={ControlLabel} sm={2}>
             Password
           </Col>
@@ -78,7 +79,7 @@ export default class AddUserForm extends Component {
           </Col>
         </FormGroup>
 
-        <FormGroup controlId="formHorizontalPlace">
+        <FormGroup controlId="location">
           <Col componentClass={ControlLabel} sm={2}>
             Place
           </Col>

@@ -1,5 +1,12 @@
-// BASE SETUP
-// =============================================================================
+/**
+ * @file defines all server routes for the Users managed in OpenVPN
+ * @name api.server.js
+ * @author Stephen Kinger 
+ */
+ 
+/**
+ * @module api
+ */
 
 // call the packages we need
 var express    = require('express');
@@ -7,7 +14,7 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
-// configure app
+
 app.use(morgan('dev')); // log requests to the console
 
 // configure body parser
@@ -17,6 +24,11 @@ app.use(cors());
 
 var port     = process.env.PORT || 3000; // set our port
 
+/**
+ * User objects and functions
+ * @var {Users}
+ * @inner
+ */
 var Users     = require('./app/models/users');
 
 // ROUTES FOR OUR API
@@ -37,80 +49,80 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
 });
 
-// on routes that end in /users
-// ----------------------------------------------------
+/**
+   * Users REST API User end-point
+   * @endpoint /api/users
+   * @name apiUsers
+   * @version v1
+   * @since v1
+   * @description Users REST API user end-point
+   */
 router.route('/users')
 
 	// create a new user (accessed at POST http://localhost:8080/api/users)
+  /**
+   * Create a new user
+   */
 	.post(function(req, res) {
-		var nom = req.body.name;
-		console.log(nom);
-		res.json({ message: 'Not Implemented Yet!', name: nom });
+	    console.log("post request");
+		var newUser = req.body;
+		console.log(newUser);
+		Users.addUser(newUser);
+		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+// 		var userAdded = Users.User()
+		res.json(userList);
 	})
 
-	// get all the bears (accessed at GET http://localhost:8080/api/users)
+
+  /**
+   * Return the declared user list
+   */
 	.get(function(req, res) {
-		console.log('get users');
-// 		V       260924094424Z           01      unknown /C=FR/ST=FR/L=Paris/O=None/OU=PiVPN/CN=pivpn/name=EasyRSA/emailAddress=myemail@
-		var user = [{ id: '260924094424Z', name: 'pivpn', state: 'Valid',
-									location: 'Paris', email: 'myemail@mail'},
-								{ id: 'none', name: 'other', state: 'Revoked',
-								location: 'Moon', email: 'moon@mail'},
-								{ id: 'titi', name: 'other', state: 'Valid',
- 								location: 'Moon', email: 'sun@mail'}];
-		res.json(user);
+		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+		res.json(userList);
 	});
 
-// on routes that end in /users/:user_id
-// ----------------------------------------------------
-router.route('/users/:user_id')
+/**
+ * On routes that end in /users/:name
+ * @param {Object} employee - The employee who is responsible for the project.
+ * @param {string} employee.name - The name of the employee.
+ * @param {string} employee.department - The employee's department.
+ */
+router.route('/users/:name')
 
-	// get the user with that id
-	.get(function(req, res) {
-		res.json({name: 'Anonymous'});
-		// Bear.findById(req.params.bear_id, function(err, bear) {
-		// 	if (err)
-		// 		res.send(err);
-		// 	res.json(bear);
-		// });
+	/**
+	 * User getter
+	 * @memberof users
+	 * @function
+	 * @name.
+	 */
+ 	.get(function(req, res) {
+ 	  //console.log(req);
+ 	  console.log(req.params.name);
+ 	  //  var fs = require('fs');
+ 	  //  fs.read
+// 		res.json({name: 'Anonymous'});
+      var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
+      res.download(file); // Set disposition and send it.
 	})
 
 	// update the user with this id
 	.put(function(req, res) {
-		// Bear.findById(req.params.bear_id, function(err, bear) {
-		//
-		// 	if (err)
-		// 		res.send(err);
-		//
-		// 	bear.name = req.body.name;
-		// 	bear.save(function(err) {
-		// 		if (err)
-		// 			res.send(err);
-		//
-		// 		res.json({ message: 'Bear updated!' });
-		// 	});
-		//
-		res.json({ message: 'Not Implemented Yet!' });
-		// });
+	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
+	   Users.updateUser(req.params.name);
+	   userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+	   res.json(userList);
 	})
 
 	// delete the bear with this id
 	.delete(function(req, res) {
-		// Bear.remove({
-		// 	_id: req.params.bear_id
-		// }, function(err, bear) {
-		// 	if (err)
-		// 		res.send(err);
-		//
-		// 	res.json({ message: 'Successfully deleted' });
 		res.json({ message: 'Not Implemented Yet!' });
-		// });
-
 	 });
 
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
+
 
 // START THE SERVER
 // =============================================================================
