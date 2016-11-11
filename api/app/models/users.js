@@ -28,6 +28,10 @@ function addUser(user) {
     });
 }
 
+function updateUser(userName) {
+    
+}
+
 function processFile(inputFile) {
     var fs = require('fs');
     var myUserList = [];
@@ -55,4 +59,5 @@ function processFile(inputFile) {
 
 exports.User = User;
 exports.processUserFile = processFile;
+exports.updateUser = updateUser;
 exports.addUser = addUser;
