@@ -83,12 +83,12 @@ router.route('/users')
 	});
 
 /**
- * On routes that end in /users/:user_id
+ * On routes that end in /users/:name
  * @param {Object} employee - The employee who is responsible for the project.
  * @param {string} employee.name - The name of the employee.
  * @param {string} employee.department - The employee's department.
  */
-router.route('/users/:user_id')
+router.route('/users/:name')
 
 	/**
 	 * User getter
@@ -97,8 +97,8 @@ router.route('/users/:user_id')
 	 * @name.
 	 */
  	.get(function(req, res) {
- 	  console.log(req);
- 	  console.log(req.body.name);
+ 	  //console.log(req);
+ 	  console.log(req.params.name);
  	  //  var fs = require('fs');
  	  //  fs.read
 // 		res.json({name: 'Anonymous'});
