@@ -19,7 +19,7 @@
 #     rm "${NAME}_creating"
 # }
 
-if [ $# -ne 2 ]
+if [ $# -ne 2 ];
 then
     echo "Usage is ./addUser.sh <Name> <Passwd>"
     exit -1
