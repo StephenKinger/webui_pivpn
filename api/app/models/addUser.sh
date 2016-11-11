@@ -26,7 +26,7 @@ then
 fi
 
 
-NAME=$1
-PASSWD=$2
+# NAME=$1
+# PASSWD=$2
 
-addUser
+# addUser
