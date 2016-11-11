@@ -5,3 +5,6 @@ webui_pivpn
   - Change Edit with Download to Download the file to connect (UI + API?)
   - Setup the user creation (API)
   - Setup the user revocation (API)
+
+
+// Add read rights on /etc/openvpn/easy-rsa/keys/index.txt // sudo chmod 744 keys
