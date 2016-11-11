@@ -11,9 +11,10 @@ function User() {
 
 
 function addUser(user) {
-  var sys = require('sys')
+
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo', ['/opt/pivpn/makeOVPN.sh']);
+//   var child = spawn('sudo', ['/opt/pivpn/makeOVPN.sh']);
+  var child = spawn('ls');
   // executes `pwd`
   child.stdout.on('data', function(block){
     if (block == 'Enter a Name for the Client'){
