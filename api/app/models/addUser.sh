@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Create OVPN Client through pivpn
 
 addUser {
