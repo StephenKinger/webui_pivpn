@@ -33,7 +33,8 @@ function updateUser(userName) {
     nexpect.spawn('bash', ['sudo','/opt/pivpn/', 'removeOVPN.sh'])
       .wait("::: Please enter the Name of the client to be revoked from the list above:")
       .sendline(userName)
-      .run(function (err) {
+      .run(function (stdout, err) {
+        console.log(stdout);
         if (!err) {
           console.log("revoked (or not), process exited");
         }
