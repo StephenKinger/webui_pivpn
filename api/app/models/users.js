@@ -32,7 +32,7 @@ function updateUser(userName) {
     var nexepect = require('nexpect');
     nexpect.spawn('bash', ['sudo','/opt/pivpn/', 'removeOVPN.sh'])
       .expect("::: Please enter the Name of the client to be revoked from the list above:")
-      .sendline(userName);
+      .sendline(userName)
       .run(function (err) {
         if (!err) {
           console.log("revoked (or not), process exited");
