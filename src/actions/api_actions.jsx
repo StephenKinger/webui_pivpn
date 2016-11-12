@@ -68,7 +68,6 @@ export function apiAuthenticate(data) {
         type: API_POST_AUTHENTICATE,
         payload: response.data
         })
-        apiStatus();
       })
       .catch((error) => {
         console.log("error");
