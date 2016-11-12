@@ -28,40 +28,6 @@ function addUser(user, callback) {
           console.log(err)
         }
       });
-    
-    // spawn = require( 'child_process' ).spawn;
-    // ls = spawn( 'bash', [ './api/app/models/addUser.sh', user.name, user.passwd ] );
-
-<<<<<<< HEAD
-    // ls.stdout.on( 'data', data => {
-    //     console.log( `stdout: ${data}` );
-    // });
-    
-    // ls.stderr.on( 'data', data => {
-    //     console.log( `stderr: ${data}` );
-    // });
-    
-    // ls.on( 'close', code => {
-    //     console.log( `child process exited with code ${code}` );
-    // });
-    //     expect "Enter a Name for the Client:  " { send "${NAME}\r" }
-    // expect "Enter the password for the client:  " { send "${PASSWD}\r" }
-    // expect "Enter the password again to verify:  " { send "${PASSWD}\r" }
-    
-    
-=======
-    ls.stdout.on( 'data', data => {
-        console.log( `stdout: ${data}` );
-    });
-
-    ls.stderr.on( 'data', data => {
-        console.log( `stderr: ${data}` );
-    });
-
-    ls.on( 'close', code => {
-        console.log( `child process exited with code ${code}` );
-    });
->>>>>>> 1bb688908bc125355cd4fa0a081e23d5cf5d9058
 }
 
 function updateUser(userName, callback) {
