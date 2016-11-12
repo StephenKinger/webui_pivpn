@@ -110,6 +110,7 @@ router.route('/users/:name')
 	.put(function(req, res) {
 	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
 	   Users.updateUser(req.params.name, function () {
+	    console.log("envoi de la reponse");
 	    userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 	    res.json(userList);
 	   });
