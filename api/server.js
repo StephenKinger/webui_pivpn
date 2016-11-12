@@ -14,8 +14,10 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
+var config     = require('./config');
 
 app.use(morgan('dev')); // log requests to the console
+app.set('superSecret', config.secret); // secret variable
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
