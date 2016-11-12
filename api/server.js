@@ -67,10 +67,11 @@ router.route('/users')
 	    console.log("post request");
 		var newUser = req.body;
 		console.log(newUser);
-		Users.addUser(newUser);
-		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
-// 		var userAdded = Users.User()
-		res.json(userList);
+		Users.addUser(newUser, function() {
+		  userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+		  res.json(userList);    
+		});
+		
 	})
 
 
