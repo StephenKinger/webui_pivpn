@@ -15,6 +15,7 @@ var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
 var config     = require('./config');
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 app.use(morgan('dev')); // log requests to the console
 app.set('superSecret', config.secret); // secret variable
@@ -45,6 +46,43 @@ router.use(function(req, res, next) {
 	console.log('Something is happening.');
 	next();
 });
+
+
+apiRoutes.post('/authenticate', function(req, res) {
+
+	// find the user
+	var user = {
+	    'name' : 'Steph',
+	    'password': 'monPassword',
+	    admin: true
+	}
+
+	if (!user) {
+		res.json({ success: false, message: 'Authentication failed. User not found.' });
+	} else if (user) {
+
+		// check if password matches
+		if (user.password != req.body.password) {
+			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+		} else {
+
+			// if user is found and password is right
+			// create a token
+			var token = jwt.sign(user, app.get('superSecret'), {
+				expiresIn: 86400 // expires in 24 hours
+			});
+
+			res.json({
+				success: true,
+				message: 'Enjoy your token!',
+				token: token
+			});
+		}		
+
+	}
+});
+
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
