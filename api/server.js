@@ -109,9 +109,10 @@ router.route('/users/:name')
 	// update the user with this id
 	.put(function(req, res) {
 	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
-	   Users.updateUser(req.params.name);
-	   userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
-	   res.json(userList);
+	   Users.updateUser(req.params.name, function () {
+	    userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+	    res.json(userList);
+	   });
 	})
 
 	// delete the bear with this id
