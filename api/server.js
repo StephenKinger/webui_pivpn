@@ -48,7 +48,7 @@ router.use(function(req, res, next) {
 });
 
 
-apiRoutes.post('/authenticate', function(req, res) {
+router.post('/authenticate', function(req, res) {
 
 	// find the user
 	var user = {
