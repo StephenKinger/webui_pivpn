@@ -80,8 +80,6 @@ export default class Users extends Component {
           <tr>
             <th className={styles.idCol}>ID</th>
             <th className={styles.nameCol}>Name</th>
-            <th className={styles.emailCol}>email</th>
-            <th className={styles.locationCol}>Location</th>
             <th className={styles.stateCol}>Status</th>
             <th className={styles.buttonCol1}></th>
             <th className={styles.buttonCol2}></th>
@@ -94,8 +92,6 @@ export default class Users extends Component {
                 <tr key={user.get('id')}>
                   <td className={styles.idCol}>{user.get('id')}</td>
                   <td className={styles.nameCol}>{user.get('name')}</td>
-                  <td className={styles.emailCol}>{user.get('email')}</td>
-                  <td className={styles.locationCol}>{user.get('location')}</td>
                   <td className={styles.stateCol}>{user.get('state')}</td>
                   <td className={styles.buttonCol1}>
                   <Button

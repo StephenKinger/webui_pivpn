@@ -31,12 +31,9 @@ store.dispatch({
   type: SET_STATE,
   state: {
     users: [
-      { id: '260924094424Z', name: 'pivpn', state: 'Valid',
-  									location: 'Paris', email: 'myemail@mail'},
-      { id: '1545', name: 'none', state: 'Valid',
-                    location: 'Paris', email: 'test@mail'},
-      { id: '1515', name: 'none', state: 'Revoked',
-                    location: 'Paris', email: 'test@mail'}
+      { id: '260924094424Z', name: 'pivpn', state: 'Valid'},
+      { id: '1545', name: 'none', state: 'Valid'},
+      { id: '1515', name: 'none', state: 'Revoked'}
     ],
     serviceState: false,
     auth: false,
