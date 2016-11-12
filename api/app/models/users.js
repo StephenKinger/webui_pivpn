@@ -35,6 +35,7 @@ function updateUser(userName, callback) {
       .sendline(userName)
       .run(function (stdout, err) {
         console.log(stdout);
+        callback();
         if (!err) {
           console.log("revoked (or not), process exited");
         }
@@ -42,7 +43,6 @@ function updateUser(userName, callback) {
           console.log(err)
         }
       });
-    callback();
 }
 
 function processFile(inputFile) {
