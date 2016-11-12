@@ -14,9 +14,7 @@ export default class AddUserForm extends Component {
   super(props);
     this.state = {
       'name': '',
-      'email': '',
-      'passwd': '',
-      'location': ''
+      'passwd': ''
       }
   }
 
@@ -41,13 +39,8 @@ export default class AddUserForm extends Component {
   onChange(evt) {
     if (evt.target.id == 'name')
       this.setState({ 'name' :  evt.target.value});
-    if (evt.target.id == 'email')
-      this.setState({ 'email' :  evt.target.value});
     if (evt.target.id == 'passwd')
       this.setState({ 'passwd' :  evt.target.value});
-    if (evt.target.id == 'location')
-      this.setState({ 'location' :  evt.target.value});
-
   }
 
   render() {
@@ -61,14 +54,6 @@ export default class AddUserForm extends Component {
             <FormControl type="text" placeholder="Name" onChange={this.onChange.bind(this)} />
           </Col>
         </FormGroup>
-        <FormGroup controlId="email">
-          <Col componentClass={ControlLabel} sm={2}>
-            Email
-          </Col>
-          <Col sm={10}>
-            <FormControl type="email" placeholder="Email" onChange={this.onChange.bind(this)} />
-          </Col>
-        </FormGroup>
 
         <FormGroup controlId="passwd" >
           <Col componentClass={ControlLabel} sm={2}>
@@ -76,15 +61,6 @@ export default class AddUserForm extends Component {
           </Col>
           <Col sm={10}>
             <FormControl type="password" placeholder="Password" onChange={this.onChange.bind(this)} />
-          </Col>
-        </FormGroup>
-
-        <FormGroup controlId="location">
-          <Col componentClass={ControlLabel} sm={2}>
-            Place
-          </Col>
-          <Col sm={10}>
-            <FormControl type="text" placeholder="Place" onChange={this.onChange.bind(this)} />
           </Col>
         </FormGroup>
 

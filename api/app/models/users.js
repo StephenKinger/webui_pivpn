@@ -4,8 +4,6 @@
 function User() {
       this.id = 'Unknown';
       this.name = 'Unknown';
-      this.email = 'Unknown';
-      this.location = 'Unknown';
       this.state = 'Unknown';
 }
 
@@ -18,11 +16,11 @@ function addUser(user) {
     ls.stdout.on( 'data', data => {
         console.log( `stdout: ${data}` );
     });
-    
+
     ls.stderr.on( 'data', data => {
         console.log( `stderr: ${data}` );
     });
-    
+
     ls.on( 'close', code => {
         console.log( `child process exited with code ${code}` );
     });
@@ -51,8 +49,6 @@ function processFile(inputFile) {
       var splitter = line.split('=');
       var userRead = new User();
       userRead.name = splitter[6].split('\/')[0];
-      userRead.email = splitter[8];
-      userRead.location = splitter[3].split('\/')[0];
       if (/^V/.test(line) == true) {
         console.log('Valid');
         userRead.state = 'Valid';
