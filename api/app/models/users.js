@@ -13,7 +13,7 @@ function User() {
 function addUser(user, callback) {
     console.log(user)
     var nexpect = require('nexpect');
-    nexpect.spawn('sudo bash /opt/pivpn/removeOVPN.sh',  { verbose: true })
+    nexpect.spawn('sudo bash /opt/pivpn/makeOVPN.sh',  { verbose: true })
       .wait("Enter a Name for the Client:  ")
       .sendline(user.name)
       .wait("Enter the password for the client:  ")
