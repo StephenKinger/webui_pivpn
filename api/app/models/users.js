@@ -28,7 +28,7 @@ function addUser(user) {
     });
 }
 
-function updateUser(userName) {
+function updateUser(userName, callback) {
     var nexpect = require('nexpect');
     nexpect.spawn('sudo bash /opt/pivpn/removeOVPN.sh',  { verbose: true })
       .wait("::: Please enter the Name of the client to be revoked from the list above:")
@@ -42,6 +42,7 @@ function updateUser(userName) {
           console.log(err)
         }
       });
+    callback();
 }
 
 function processFile(inputFile) {
