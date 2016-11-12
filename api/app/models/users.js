@@ -10,22 +10,46 @@ function User() {
 }
 
 
-function addUser(user) {
+function addUser(user, callback) {
     console.log(user)
-    spawn = require( 'child_process' ).spawn;
-    ls = spawn( 'bash', [ './api/app/models/addUser.sh', user.name, user.passwd ] );
+    var nexpect = require('nexpect');
+    nexpect.spawn('sudo bash /opt/pivpn/removeOVPN.sh',  { verbose: true })
+      .wait("Enter a Name for the Client:  ")
+      .sendline(user.name)
+      .wait("Enter the password for the client:  ")
+      .sendline(user.passwd)
+      .wait("Enter the password again to verify:  ")
+      .sendline(user.passwd)
+      .run(function (stdout, err) {
+        console.log(stdout);
+        callback();
+        if (!err) {
+          console.log("User Created, process exited");
+        }
+        else {
+          console.log(err)
+        }
+      });
+    
+    // spawn = require( 'child_process' ).spawn;
+    // ls = spawn( 'bash', [ './api/app/models/addUser.sh', user.name, user.passwd ] );
 
-    ls.stdout.on( 'data', data => {
-        console.log( `stdout: ${data}` );
-    });
+    // ls.stdout.on( 'data', data => {
+    //     console.log( `stdout: ${data}` );
+    // });
     
-    ls.stderr.on( 'data', data => {
-        console.log( `stderr: ${data}` );
-    });
+    // ls.stderr.on( 'data', data => {
+    //     console.log( `stderr: ${data}` );
+    // });
     
-    ls.on( 'close', code => {
-        console.log( `child process exited with code ${code}` );
-    });
+    // ls.on( 'close', code => {
+    //     console.log( `child process exited with code ${code}` );
+    // });
+    //     expect "Enter a Name for the Client:  " { send "${NAME}\r" }
+    // expect "Enter the password for the client:  " { send "${PASSWD}\r" }
+    // expect "Enter the password again to verify:  " { send "${PASSWD}\r" }
+    
+    
 }
 
 function updateUser(userName, callback) {
