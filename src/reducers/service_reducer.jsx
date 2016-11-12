@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux';
-import {TOGGLE_SERVICE, SET_STATE, API_GET_USERS, FILTER_USERS, ADD_USER, API_POST_USERS, API_PUT_REVOKE_USER} from '../actions/actions_types';
-import * as actions from '../actions/';
+import {TOGGLE_SERVICE, SET_STATE, API_GET_USERS, FILTER_USERS,
+  ADD_USER, API_POST_USERS, API_PUT_REVOKE_USER, API_POST_AUTHENTICATE} from '../actions/actions_types';
+//import * as actions from '../actions/';
+import apiStatus from '../actions/api_actions'
 // import {toggleService} from '../actions/action_types';
 import {Map} from 'immutable';
-
+import cookie from 'react-cookie';
 
 
 /**
@@ -25,8 +27,17 @@ import {Map} from 'immutable';
       return updateUserCreate(state, action.payload);
     case API_PUT_REVOKE_USER:
       return update_status(state, action.payload);
+    case API_POST_AUTHENTICATE:
+      return updateAuth(state, action.payload);
   }
   return state;
+}
+
+function updateAuth(state, payload) {
+  console.log(payload);
+  cookie.save('token', payload.token, { path: '/' });
+//  apiStatus();
+  return state.update('authToken', (token) => token = payload.token);
 }
 
 function updateUserCreate(state, payload) {

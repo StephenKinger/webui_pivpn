@@ -20,7 +20,11 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   componentDidMount() {
-    this.props.apiStatus();
+    //this.props.apiStatus();
+  }
+
+  handleLogout(){
+    console.log('logout');
   }
 
   render() {
@@ -57,8 +61,20 @@ export default class AppGuiOpenVPN extends React.Component {
                   <i className="fa fa-info-circle"/> About
                 </NavItem>
               </LinkContainer>
+              {!this.props.authToken &&
+              <LinkContainer to="/login">
+                <NavItem eventKey={5}>Login</NavItem>
+              </LinkContainer>}
+              {this.props.authToken &&
+              <LinkContainer to="/logout">
+                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout.bind(this)}>
+                  Logout
+                </NavItem>
+              </LinkContainer>}
             </Nav>
+            {this.props.authToken &&
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
+            }
             <Nav navbar pullRight>
               <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
@@ -87,7 +103,8 @@ function mapStateProps(state) {
     users: state.service.get('users'),
     auth : state.service.get('auth'),
     filter_state: state.service.get('filter_state'),
-    addingUser: state.service.get('addingUser')
+    addingUser: state.service.get('addingUser'),
+    authToken: state.service.get('authToken')
   };
 }
 

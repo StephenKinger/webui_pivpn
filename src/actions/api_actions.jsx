@@ -1,13 +1,17 @@
 import axios from 'axios';
-import {API_GET_USERS, API_POST_USERS, API_GET_USER_FILE, API_PUT_REVOKE_USER} from './actions_types';
+import {API_GET_USERS, API_POST_USERS, API_GET_USER_FILE, API_PUT_REVOKE_USER, API_POST_AUTHENTICATE} from './actions_types';
 
-import {API_URL} from '../config';
+import config from '../config';
+import cookie from 'react-cookie';
 
 export function apiStatus() {
-  console.log(API_URL)
+  console.log(config.API_URL)
   return ( (dispatch) => {
-    axios.get(`${API_URL}/users`)
+    axios.get(`${config.API_URL}/users`, {
+      headers: { 'Authorization': cookie.load('token') }
+      })
       .then(response => {
+        console.log("response");
         dispatch({
         type: API_GET_USERS,
         payload: response.data
@@ -23,7 +27,7 @@ export function apiCreateUser(data) {
   console.log("apiCreateUser");
   console.log(data);
   return ( (dispatch) => {
-    axios.post(`${API_URL}/users`, data)
+    axios.post(`${config.API_URL}/users`, data)
       .then(response => {
         dispatch({
         type: API_POST_USERS,
@@ -40,7 +44,7 @@ export function apiRevokeUser(data) {
   console.log("apiRevokeUser");
   console.log(data);
   return ( (dispatch) => {
-    axios.put(`${API_URL}/users/${data}`)
+    axios.put(`${config.API_URL}/users/${data}`)
       .then(response => {
         dispatch({
         type: API_PUT_REVOKE_USER,
@@ -48,6 +52,26 @@ export function apiRevokeUser(data) {
         });
       })
       .catch((error) => {
+        console.log(error);
+      })
+  })
+}
+
+export function apiAuthenticate(data) {
+  console.log("apiAuthenticate");
+  console.log(data);
+  return ( (dispatch) => {
+    axios.post(`${config.API_URL}/authenticate`, data)
+      .then(response => {
+        console.log("response");
+        dispatch({
+        type: API_POST_AUTHENTICATE,
+        payload: response.data
+        })
+        apiStatus();
+      })
+      .catch((error) => {
+        console.log("error");
         console.log(error);
       })
   })
