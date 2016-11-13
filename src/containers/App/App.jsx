@@ -43,7 +43,10 @@ export default class AppGuiOpenVPN extends React.Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
                 <div className={styles.brand}/>
-                <span>WebUI for OpenVPN server management</span>
+                <span>
+                  <img src={require('../Home/pivpn_logo.png')}
+                  width='20px' height='20px'/>  WebUI for pivpn
+                </span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -51,22 +54,27 @@ export default class AppGuiOpenVPN extends React.Component {
 
           <Navbar.Collapse>
             <Nav navbar>
+            {this.props.authToken &&
               <LinkContainer to="/status">
                 <NavItem>
                   <i className="fa fa-tachometer"/> Status
                 </NavItem>
               </LinkContainer>
-
+            }
+            {this.props.authToken &&
               <LinkContainer to="/users">
                 <NavItem>
                   <i className="fa fa-users"/> Users
                 </NavItem>
               </LinkContainer>
+            }
+            {this.props.authToken &&
               <LinkContainer to="/about">
                 <NavItem>
                   <i className="fa fa-info-circle"/> About
                 </NavItem>
               </LinkContainer>
+            }
               {!this.props.authToken &&
               <LinkContainer to="/login">
                 <NavItem eventKey={5}>Login</NavItem>
@@ -79,7 +87,7 @@ export default class AppGuiOpenVPN extends React.Component {
               </LinkContainer>}
             </Nav>
             {this.props.authToken &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in.</p>
             }
             <Nav navbar pullRight>
               <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>

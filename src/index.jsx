@@ -7,7 +7,7 @@ import reducer from './reducer';
 import {AppContainer} from './containers/App/App';
 import {compose, createStore, combineReducers, applyMiddleware} from 'redux';
 import {getRoutes} from './routes'
-
+import cookie from 'react-cookie';
 import {SET_STATE} from './actions/actions_types'
 
 import reduxThunk from 'redux-thunk';
@@ -36,7 +36,7 @@ store.dispatch({
     auth: false,
     filter_state: 'All',
     addingUser: false,
-    authToken: false
+    authToken: cookie.load('token')
   }
 });
 
