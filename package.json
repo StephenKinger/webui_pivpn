@@ -4,6 +4,7 @@
   "description": "Web UI to get openvpn profiles and manage revocation list",
   "main": "index.js",
   "scripts": {
+    "prod": "./node_modules/webpack/bin/webpack.js && node api/server.js",
     "api": "nodemon api/server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\"",
     "test:watch": "npm run test -- --watch --watch-extensions jsx"
@@ -31,7 +32,9 @@
     "express": "^4.14.0",
     "font-awesome": "^4.6.3",
     "immutable": "^3.8.1",
+    "jsonwebtoken": "^7.1.9",
     "morgan": "~1.0.0",
+    "nexpect": "^0.5.0",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.3",
     "react-cookie": "^0.4.8",

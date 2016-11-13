@@ -39,13 +39,17 @@ function updateAuthDisconnected(state) {
 }
 
 function updateAuth(state, payload) {
-  console.log(payload);
-  cookie.save('token', payload.token, { path: '/' });
-  return state.update('authToken', (token) => token = payload.token);
+  if (payload.success) {
+    cookie.save('token', payload.token, { path: '/' });
+    state.update('authError', (authError) => authError = false);
+    return state.update('authToken', (token) => token = payload.token);
+  }
+  else {
+    return state.update('authError', (authError) => authError = true);
+  }
 }
 
 function updateUserCreate(state, payload) {
-  console.log(payload);
   var newState = update_status(state, payload);
   return addingUser(newState);
 }
@@ -62,14 +66,6 @@ function setState(state, newState){
   return state.merge(newState);
 }
 
-function toggleService(state){
-  let serviceState = state.get('serviceState');
-  let newServiceState = false;
-  if (serviceState == false) {
-    newServiceState = true;
-  }
-  return state.update('serviceState', currentServiceState => currentServiceState = newServiceState);
-}
 
 function update_status(state, payload) {
   return state.update('users', (users) => {

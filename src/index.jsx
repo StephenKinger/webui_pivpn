@@ -32,11 +32,10 @@ store.dispatch({
   state: {
     users: [
     ],
-    serviceState: false,
-    auth: false,
     filter_state: 'All',
     addingUser: false,
-    authToken: cookie.load('token')
+    authToken: cookie.load('token'),
+    authError: false
   }
 });
 

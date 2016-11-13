@@ -8,7 +8,6 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
-import StartStopService from '../ServiceContainer/StartStopService'
 
 import * as serviceActions from '../../actions/service_actions';
 import * as apiActions from '../../actions/api_actions';
@@ -20,16 +19,14 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.apiStatus();
-  }
-
-  handleLogout(){
-    this.props.disconnect();
+    if (this.props.authToken != '') {
+      this.props.apiGetUsers();
+    }
   }
 
   componentWillUpdate(nextProps, nextState){
       if (this.props.authToken != nextProps.authToken) {
-        this.props.apiStatus();
+        this.props.apiGetUsers();
       }
   }
 
@@ -55,23 +52,9 @@ export default class AppGuiOpenVPN extends React.Component {
           <Navbar.Collapse>
             <Nav navbar>
             {this.props.authToken &&
-              <LinkContainer to="/status">
-                <NavItem>
-                  <i className="fa fa-tachometer"/> Status
-                </NavItem>
-              </LinkContainer>
-            }
-            {this.props.authToken &&
               <LinkContainer to="/users">
                 <NavItem>
                   <i className="fa fa-users"/> Users
-                </NavItem>
-              </LinkContainer>
-            }
-            {this.props.authToken &&
-              <LinkContainer to="/about">
-                <NavItem>
-                  <i className="fa fa-info-circle"/> About
                 </NavItem>
               </LinkContainer>
             }
@@ -80,19 +63,15 @@ export default class AppGuiOpenVPN extends React.Component {
                 <NavItem eventKey={5}>Login</NavItem>
               </LinkContainer>}
               {this.props.authToken &&
-              <LinkContainer to="/logout">
-                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout.bind(this)}>
+              <LinkContainer to="/login">
+                <NavItem eventKey={6} className="logout-link" >
                   Logout
                 </NavItem>
               </LinkContainer>}
             </Nav>
-            {this.props.authToken &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in.</p>
-            }
             <Nav navbar pullRight>
-              <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>
-              <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
-                <i className="fa fa-github"/>
+              <NavItem target="_blank" title="View on Github" href="https://github.com/StephenKinger/webui_pivpn">
+                <i className="fa fa-github fa-2x"/>
               </NavItem>
             </Nav>
           </Navbar.Collapse>
@@ -102,9 +81,8 @@ export default class AppGuiOpenVPN extends React.Component {
         </div>
         <div className="well text-center">
           Have questions? Ask for help <a
-          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-          target="_blank">on Github</a> or in the <a
-          href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
+          href="https://github.com/StephenKinger/webui_pivpn/issues"
+          target="_blank">on Github.</a>
         </div>
       </div> )
   }
@@ -113,12 +91,11 @@ export default class AppGuiOpenVPN extends React.Component {
 
 function mapStateProps(state) {
   return {
-    serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
-    auth : state.service.get('auth'),
     filter_state: state.service.get('filter_state'),
     addingUser: state.service.get('addingUser'),
-    authToken: state.service.get('authToken')
+    authToken: state.service.get('authToken'),
+    authError: state.service.get('authError')
   };
 }
 

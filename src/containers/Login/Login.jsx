@@ -4,14 +4,20 @@ import Helmet from 'react-helmet';
 
 
 export default class Login extends Component {
-  handleSubmit (){
-    console.log('handdlesubmit');
+
+  handleSubmit (e){
+    if (e) {
+     e.preventDefault();
+    }
     var login = {
       'name': `${this.refs.username.value}`,
       'password': `${this.refs.password.value}`
     }
-    console.log(login);
     this.props.apiAuthenticate(login);
+  }
+
+  handleLogout(){
+    this.props.disconnect();
   }
 
   render() {
@@ -32,6 +38,9 @@ export default class Login extends Component {
             </button>
           </form>
           <p>This will login you and get the jwt.</p>
+          {this.props.authError &&
+            <p><strong>Bad user name or password</strong></p>
+          }
         </div>
         }
         {authToken &&
@@ -39,11 +48,11 @@ export default class Login extends Component {
           <p>You are currently logged in.</p>
 
           <div>
-            <button className="btn btn-danger" onClick={logout}><i className="fa fa-sign-out"/>{' '}Log Out</button>
+            <button className="btn btn-danger" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out"/>{' '}Log Out</button>
           </div>
         </div>
         }
       </div>
     );
   }
-} 
+}

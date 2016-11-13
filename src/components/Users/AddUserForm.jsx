@@ -19,13 +19,10 @@ export default class AddUserForm extends Component {
   }
 
   _handleValidSubmit(e) {
-    console.log('handle');
     if (e) {
-           e.preventDefault();
-       }
-       console.log(this.state);
-       this.props.apiCreateUser(this.state);
-    //TODO send a post to an API.
+     e.preventDefault();
+    }
+    this.props.apiCreateUser(this.state);
   }
 
   getValues() {

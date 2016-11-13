@@ -9,7 +9,6 @@ function User() {
 
 
 function addUser(user, callback) {
-    console.log(user)
     var nexpect = require('nexpect');
     nexpect.spawn('sudo bash /opt/pivpn/makeOVPN.sh',  { verbose: true })
       .wait("Enter a Name for the Client:  ")
@@ -19,7 +18,6 @@ function addUser(user, callback) {
       .wait("Enter the password again to verify:  ")
       .sendline(user.passwd)
       .run(function (stdout, err) {
-        console.log(stdout);
         callback();
         if (!err) {
           console.log("User Created, process exited");
@@ -36,7 +34,6 @@ function updateUser(userName, callback) {
       .wait("::: Please enter the Name of the client to be revoked from the list above:")
       .sendline(userName)
       .run(function (stdout, err) {
-        console.log(stdout);
         callback();
         if (!err) {
           console.log("revoked (or not), process exited");
@@ -56,13 +53,11 @@ function processFile(inputFile) {
       var userRead = new User();
       userRead.name = splitter[6].split('\/')[0];
       if (/^V/.test(line) == true) {
-        console.log('Valid');
         userRead.state = 'Valid';
       }
       else if(/^R/.test(line) == true) {
         userRead.state = 'Revoked';
       }
-      console.log(splitter[0].split(' '));
       userRead.id = splitter[0].split('\t')[1];
       myUserList.push(userRead);
 

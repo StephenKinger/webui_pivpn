@@ -1,9 +1,9 @@
 /**
  * @file defines all server routes for the Users managed in OpenVPN
  * @name api.server.js
- * @author Stephen Kinger 
+ * @author Stephen Kinger
  */
- 
+
 /**
  * @module api
  */
@@ -16,6 +16,7 @@ var morgan     = require('morgan');
 var cors       = require('cors');
 var config     = require('./config');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var path = require("path");
 
 app.use(morgan('dev')); // log requests to the console
 app.set('superSecret', config.secret); // secret variable
@@ -24,6 +25,8 @@ app.set('superSecret', config.secret); // secret variable
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, "../dist")));
 
 var port     = process.env.PORT || 3000; // set our port
 
@@ -43,7 +46,6 @@ var router = express.Router();
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
-	console.log('Something is happening.');
 	next();
 });
 
@@ -52,8 +54,8 @@ router.post('/authenticate', function(req, res) {
 
 	// find the user
 	var user = {
-	    'name' : 'Steph',
-	    'password': 'monPassword',
+	    'name' : config.name,
+	    'password': config.password,
 	    admin: true
 	}
 
@@ -77,7 +79,7 @@ router.post('/authenticate', function(req, res) {
 				message: 'Enjoy your token!',
 				token: token
 			});
-		}		
+		}
 
 	}
 });
@@ -94,12 +96,12 @@ router.use(function(req, res, next) {
 	if (token) {
 
 		// verifies secret and checks exp
-		jwt.verify(token, app.get('superSecret'), function(err, decoded) {			
+		jwt.verify(token, app.get('superSecret'), function(err, decoded) {
 			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
 			} else {
 				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
+				req.decoded = decoded;
 				next();
 			}
 		});
@@ -108,13 +110,13 @@ router.use(function(req, res, next) {
 
 		// if there is no token
 		// return an error
-		return res.status(403).send({ 
-			success: false, 
+		return res.status(403).send({
+			success: false,
 			message: 'No token provided.'
 		});
-		
+
 	}
-	
+
 });
 
 
@@ -138,14 +140,12 @@ router.route('/users')
    * Create a new user
    */
 	.post(function(req, res) {
-	    console.log("post request");
 		var newUser = req.body;
-		console.log(newUser);
 		Users.addUser(newUser, function() {
 		  userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
-		  res.json(userList);    
+		  res.json(userList);
 		});
-		
+
 	})
 
 
@@ -172,20 +172,13 @@ router.route('/users/:name')
 	 * @name.
 	 */
  	.get(function(req, res) {
- 	  //console.log(req);
- 	  console.log(req.params.name);
- 	  //  var fs = require('fs');
- 	  //  fs.read
-// 		res.json({name: 'Anonymous'});
       var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
       res.download(file); // Set disposition and send it.
 	})
 
 	// update the user with this id
 	.put(function(req, res) {
-	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
 	   Users.updateUser(req.params.name, function () {
-	    console.log("envoi de la reponse");
 	    userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 	    res.json(userList);
 	   });
