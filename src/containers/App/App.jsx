@@ -8,7 +8,6 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Helmet from 'react-helmet';
 import ReactDOM from 'react-dom';
-import StartStopService from '../ServiceContainer/StartStopService'
 
 import * as serviceActions from '../../actions/service_actions';
 import * as apiActions from '../../actions/api_actions';
@@ -85,9 +84,8 @@ export default class AppGuiOpenVPN extends React.Component {
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in.</p>
             }
             <Nav navbar pullRight>
-              <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>
-              <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
-                <i className="fa fa-github"/>
+              <NavItem target="_blank" title="View on Github" href="https://github.com/StephenKinger/webui_pivpn">
+                <i className="fa fa-github fa-2x"/>
               </NavItem>
             </Nav>
           </Navbar.Collapse>
@@ -97,9 +95,8 @@ export default class AppGuiOpenVPN extends React.Component {
         </div>
         <div className="well text-center">
           Have questions? Ask for help <a
-          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-          target="_blank">on Github</a> or in the <a
-          href="https://discord.gg/0ZcbPKXt5bZZb1Ko" target="_blank">#react-redux-universal</a> Discord channel.
+          href="https://github.com/StephenKinger/webui_pivpn/issues"
+          target="_blank">on Github.</a>
         </div>
       </div> )
   }
@@ -108,7 +105,6 @@ export default class AppGuiOpenVPN extends React.Component {
 
 function mapStateProps(state) {
   return {
-    serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
     filter_state: state.service.get('filter_state'),
     addingUser: state.service.get('addingUser'),

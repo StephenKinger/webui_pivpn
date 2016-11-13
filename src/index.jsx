@@ -32,7 +32,6 @@ store.dispatch({
   state: {
     users: [
     ],
-    serviceState: false,
     filter_state: 'All',
     addingUser: false,
     authToken: cookie.load('token')

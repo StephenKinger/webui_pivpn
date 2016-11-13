@@ -62,14 +62,6 @@ function setState(state, newState){
   return state.merge(newState);
 }
 
-function toggleService(state){
-  let serviceState = state.get('serviceState');
-  let newServiceState = false;
-  if (serviceState == false) {
-    newServiceState = true;
-  }
-  return state.update('serviceState', currentServiceState => currentServiceState = newServiceState);
-}
 
 function update_status(state, payload) {
   return state.update('users', (users) => {
