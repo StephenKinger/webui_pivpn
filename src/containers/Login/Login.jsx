@@ -4,8 +4,12 @@ import Helmet from 'react-helmet';
 
 
 export default class Login extends Component {
-  handleSubmit (){
+
+  handleSubmit (e){
     console.log('handdlesubmit');
+    if (e) {
+     e.preventDefault();
+    }
     var login = {
       'name': `${this.refs.username.value}`,
       'password': `${this.refs.password.value}`
