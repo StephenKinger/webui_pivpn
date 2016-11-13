@@ -18,14 +18,11 @@ export default class Users extends Component {
   }
 
   _handleDownload(user) {
-    console.log('handleDownlaod ' + user);
     var name = user.get('name');
-    console.log(name);
     window.location.href = config.API_URL + '/users/' + name;
   }
 
   _handleRevoke(user) {
-    console.log('revoque' + user);
     this.props.apiRevokeUser(user.get('name'));
   }
 

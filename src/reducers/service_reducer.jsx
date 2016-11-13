@@ -39,13 +39,11 @@ function updateAuthDisconnected(state) {
 }
 
 function updateAuth(state, payload) {
-  console.log(payload);
   cookie.save('token', payload.token, { path: '/' });
   return state.update('authToken', (token) => token = payload.token);
 }
 
 function updateUserCreate(state, payload) {
-  console.log(payload);
   var newState = update_status(state, payload);
   return addingUser(newState);
 }

@@ -6,7 +6,6 @@ import Helmet from 'react-helmet';
 export default class Login extends Component {
 
   handleSubmit (e){
-    console.log('handdlesubmit');
     if (e) {
      e.preventDefault();
     }
@@ -14,7 +13,6 @@ export default class Login extends Component {
       'name': `${this.refs.username.value}`,
       'password': `${this.refs.password.value}`
     }
-    console.log(login);
     this.props.apiAuthenticate(login);
   }
 

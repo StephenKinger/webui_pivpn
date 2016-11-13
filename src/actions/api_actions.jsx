@@ -11,7 +11,6 @@ export function apiGetUsers() {
       headers: { 'x-access-token': cookie.load('token') }
       })
       .then(response => {
-        console.log("response");
         dispatch({
         type: API_GET_USERS,
         payload: response.data
@@ -61,14 +60,12 @@ export function apiAuthenticate(data) {
   return ( (dispatch) => {
     axios.post(`${config.API_URL}/authenticate`, data)
       .then(response => {
-        console.log("response");
         dispatch({
         type: API_POST_AUTHENTICATE,
         payload: response.data
         })
       })
       .catch((error) => {
-        console.log("error");
         console.log(error);
       })
   })
