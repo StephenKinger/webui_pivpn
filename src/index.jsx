@@ -33,7 +33,6 @@ store.dispatch({
     users: [
     ],
     serviceState: false,
-    auth: false,
     filter_state: 'All',
     addingUser: false,
     authToken: cookie.load('token')

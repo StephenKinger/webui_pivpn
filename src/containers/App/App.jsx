@@ -20,7 +20,9 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.apiStatus();
+    if (this.props.authToken != '') {
+      this.props.apiGetUsers();
+    }
   }
 
   handleLogout(){
@@ -29,7 +31,7 @@ export default class AppGuiOpenVPN extends React.Component {
 
   componentWillUpdate(nextProps, nextState){
       if (this.props.authToken != nextProps.authToken) {
-        this.props.apiStatus();
+        this.props.apiGetUsers();
       }
   }
 
@@ -54,13 +56,6 @@ export default class AppGuiOpenVPN extends React.Component {
 
           <Navbar.Collapse>
             <Nav navbar>
-            {this.props.authToken &&
-              <LinkContainer to="/status">
-                <NavItem>
-                  <i className="fa fa-tachometer"/> Status
-                </NavItem>
-              </LinkContainer>
-            }
             {this.props.authToken &&
               <LinkContainer to="/users">
                 <NavItem>
@@ -115,7 +110,6 @@ function mapStateProps(state) {
   return {
     serviceState: state.service.get('serviceState'),
     users: state.service.get('users'),
-    auth : state.service.get('auth'),
     filter_state: state.service.get('filter_state'),
     addingUser: state.service.get('addingUser'),
     authToken: state.service.get('authToken')

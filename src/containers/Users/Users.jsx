@@ -24,14 +24,6 @@ export default class Users extends Component {
     window.location.href = config.API_URL + '/users/' + name;
   }
 
-  _handleEdit() {
-    console.log("hello handle")
-  }
-
-  // handleAdd() {
-  //   this.props.addUser();
-  // }
-
   _handleRevoke(user) {
     console.log('revoque' + user);
     this.props.apiRevokeUser(user.get('name'));
@@ -40,11 +32,6 @@ export default class Users extends Component {
   _handleOnFilter(filter) {
     this.props.filter_users(filter);
   }
-
-  clicked(user) {
-    console.log("clicked"+{user});
-  }
-
 
   render() {
     const styles = require('./Users.scss');
@@ -97,13 +84,6 @@ export default class Users extends Component {
                     bsStyle="success"
                       onClick={this._handleDownload.bind(this, user)}>
                     <i className="fa fa-download"/> Download
-                  </Button>
-                  </td>
-                  <td className={styles.buttonCol2}>
-                  <Button
-                    bsStyle="primary"
-                      onClick={this._handleEdit.bind(this, user)}>
-                    <i className="fa fa-pencil"/> Edit
                   </Button>
                   </td>
                   <td className={styles.buttonCol3}>

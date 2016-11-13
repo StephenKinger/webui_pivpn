@@ -5,7 +5,6 @@ import {
     NotFound,
     Home,
     About,
-    Status,
     Users,
     Login
   } from './containers';
@@ -23,7 +22,6 @@ export function getRoutes(store) {
       { /* Routes */ }
       <Route path="login" component={Login}/>
       <Route path="about" component={About}/>
-      <Route path="status" component={Status}/>
       <Route path="users" component={Users}/>
       { /* <Route path="about" component={Survey}/> */ }
 
