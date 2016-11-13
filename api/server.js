@@ -16,6 +16,7 @@ var morgan     = require('morgan');
 var cors       = require('cors');
 var config     = require('./config');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var path = require("path");
 
 app.use(morgan('dev')); // log requests to the console
 app.set('superSecret', config.secret); // secret variable
