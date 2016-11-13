@@ -55,8 +55,8 @@ router.post('/authenticate', function(req, res) {
 
 	// find the user
 	var user = {
-	    'name' : 'Steph',
-	    'password': 'monPassword',
+	    'name' : config.name,
+	    'password': config.password,
 	    admin: true
 	}
 
