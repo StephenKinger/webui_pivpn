@@ -39,8 +39,14 @@ function updateAuthDisconnected(state) {
 }
 
 function updateAuth(state, payload) {
-  cookie.save('token', payload.token, { path: '/' });
-  return state.update('authToken', (token) => token = payload.token);
+  if (payload.success) {
+    cookie.save('token', payload.token, { path: '/' });
+    state.update('authError', (authError) => authError = false);
+    return state.update('authToken', (token) => token = payload.token);
+  }
+  else {
+    return state.update('authError', (authError) => authError = true);
+  }
 }
 
 function updateUserCreate(state, payload) {

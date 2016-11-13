@@ -38,6 +38,9 @@ export default class Login extends Component {
             </button>
           </form>
           <p>This will login you and get the jwt.</p>
+          {this.props.authError &&
+            <p><strong>Bad user name or password</strong></p>
+          }
         </div>
         }
         {authToken &&

@@ -94,7 +94,8 @@ function mapStateProps(state) {
     users: state.service.get('users'),
     filter_state: state.service.get('filter_state'),
     addingUser: state.service.get('addingUser'),
-    authToken: state.service.get('authToken')
+    authToken: state.service.get('authToken'),
+    authError: state.service.get('authError')
   };
 }
 
