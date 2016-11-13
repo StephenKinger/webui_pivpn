@@ -14,8 +14,11 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
+var config     = require('./config');
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 app.use(morgan('dev')); // log requests to the console
+app.set('superSecret', config.secret); // secret variable
 
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +47,77 @@ router.use(function(req, res, next) {
 	next();
 });
 
+
+router.post('/authenticate', function(req, res) {
+
+	// find the user
+	var user = {
+	    'name' : 'Steph',
+	    'password': 'monPassword',
+	    admin: true
+	}
+
+	if (!user) {
+		res.json({ success: false, message: 'Authentication failed. User not found.' });
+	} else if (user) {
+
+		// check if password matches
+		if (user.password != req.body.password) {
+			res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+		} else {
+
+			// if user is found and password is right
+			// create a token
+			var token = jwt.sign(user, app.get('superSecret'), {
+				expiresIn: 86400 // expires in 24 hours
+			});
+
+			res.json({
+				success: true,
+				message: 'Enjoy your token!',
+				token: token
+			});
+		}		
+
+	}
+});
+
+// ---------------------------------------------------------
+// route middleware to authenticate and check token
+// ---------------------------------------------------------
+router.use(function(req, res, next) {
+
+	// check header or url parameters or post parameters for token
+	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+
+	// decode token
+	if (token) {
+
+		// verifies secret and checks exp
+		jwt.verify(token, app.get('superSecret'), function(err, decoded) {			
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+			} else {
+				// if everything is good, save to request for use in other routes
+				req.decoded = decoded;	
+				next();
+			}
+		});
+
+	} else {
+
+		// if there is no token
+		// return an error
+		return res.status(403).send({ 
+			success: false, 
+			message: 'No token provided.'
+		});
+		
+	}
+	
+});
+
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
@@ -67,10 +141,11 @@ router.route('/users')
 	    console.log("post request");
 		var newUser = req.body;
 		console.log(newUser);
-		Users.addUser(newUser);
-		userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
-// 		var userAdded = Users.User()
-		res.json(userList);
+		Users.addUser(newUser, function() {
+		  userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+		  res.json(userList);    
+		});
+		
 	})
 
 
@@ -109,9 +184,11 @@ router.route('/users/:name')
 	// update the user with this id
 	.put(function(req, res) {
 	   //var file = '/home/steph/ovpns/' + req.params.name + '.ovpn';
-	   Users.updateUser(req.params.name);
-	   userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
-	   res.json(userList);
+	   Users.updateUser(req.params.name, function () {
+	    console.log("envoi de la reponse");
+	    userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
+	    res.json(userList);
+	   });
 	})
 
 	// delete the bear with this id

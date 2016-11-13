@@ -4,36 +4,40 @@
 function User() {
       this.id = 'Unknown';
       this.name = 'Unknown';
-      this.email = 'Unknown';
-      this.location = 'Unknown';
       this.state = 'Unknown';
 }
 
 
-function addUser(user) {
+function addUser(user, callback) {
     console.log(user)
-    spawn = require( 'child_process' ).spawn;
-    ls = spawn( 'bash', [ './api/app/models/addUser.sh', user.name, user.passwd ] );
-
-    ls.stdout.on( 'data', data => {
-        console.log( `stdout: ${data}` );
-    });
-    
-    ls.stderr.on( 'data', data => {
-        console.log( `stderr: ${data}` );
-    });
-    
-    ls.on( 'close', code => {
-        console.log( `child process exited with code ${code}` );
-    });
+    var nexpect = require('nexpect');
+    nexpect.spawn('sudo bash /opt/pivpn/makeOVPN.sh',  { verbose: true })
+      .wait("Enter a Name for the Client:  ")
+      .sendline(user.name)
+      .wait("Enter the password for the client:  ")
+      .sendline(user.passwd)
+      .wait("Enter the password again to verify:  ")
+      .sendline(user.passwd)
+      .run(function (stdout, err) {
+        console.log(stdout);
+        callback();
+        if (!err) {
+          console.log("User Created, process exited");
+        }
+        else {
+          console.log(err)
+        }
+      });
 }
 
-function updateUser(userName) {
+function updateUser(userName, callback) {
     var nexpect = require('nexpect');
-    nexpect.spawn('bash', ['sudo','/opt/pivpn/', 'removeOVPN.sh'])
+    nexpect.spawn('sudo bash /opt/pivpn/removeOVPN.sh',  { verbose: true })
       .wait("::: Please enter the Name of the client to be revoked from the list above:")
       .sendline(userName)
-      .run(function (err) {
+      .run(function (stdout, err) {
+        console.log(stdout);
+        callback();
         if (!err) {
           console.log("revoked (or not), process exited");
         }
@@ -51,8 +55,6 @@ function processFile(inputFile) {
       var splitter = line.split('=');
       var userRead = new User();
       userRead.name = splitter[6].split('\/')[0];
-      userRead.email = splitter[8];
-      userRead.location = splitter[3].split('\/')[0];
       if (/^V/.test(line) == true) {
         console.log('Valid');
         userRead.state = 'Valid';
