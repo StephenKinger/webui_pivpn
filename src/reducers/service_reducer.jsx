@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import {TOGGLE_SERVICE, SET_STATE, API_GET_USERS, FILTER_USERS,
-  ADD_USER, API_POST_USERS, API_PUT_REVOKE_USER, API_POST_AUTHENTICATE} from '../actions/actions_types';
+  ADD_USER, API_POST_USERS, API_PUT_REVOKE_USER, API_POST_AUTHENTICATE,
+  DISCONNECT} from '../actions/actions_types';
 
 import {Map} from 'immutable';
 import cookie from 'react-cookie';
@@ -27,8 +28,14 @@ import cookie from 'react-cookie';
       return update_status(state, action.payload);
     case API_POST_AUTHENTICATE:
       return updateAuth(state, action.payload);
+    case DISCONNECT:
+      return updateAuthDisconnected(state);
   }
   return state;
+}
+
+function updateAuthDisconnected(state) {
+  return state.update('authToken', (token) => token = '');
 }
 
 function updateAuth(state, payload) {

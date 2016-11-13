@@ -12,3 +12,4 @@ export const API_POST_AUTHENTICATE = 'api_post_authenticate';
 
 export const FILTER_USERS = 'filter_users';
 export const ADD_USER = 'add_user';
+export const DISCONNECT = 'disconnect';

@@ -24,14 +24,14 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   handleLogout(){
-    console.log('logout');
+    this.props.disconnect();
   }
 
   componentWillUpdate(nextProps, nextState){
       if (this.props.authToken != nextProps.authToken) {
-        apiStatus();
+        this.props.apiStatus();
       }
-  } 
+  }
 
   render() {
     const styles = require('./App.scss');

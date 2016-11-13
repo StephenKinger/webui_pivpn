@@ -5,10 +5,11 @@ import config from '../config';
 import cookie from 'react-cookie';
 
 export function apiStatus() {
-  console.log(config.API_URL)
+  console.log(config.API_URL);
+  console.log(cookie.load('token'));
   return ( (dispatch) => {
     axios.get(`${config.API_URL}/users`, {
-      headers: { 'Authorization': cookie.load('token') }
+      headers: { 'x-access-token': cookie.load('token') }
       })
       .then(response => {
         console.log("response");
@@ -27,7 +28,9 @@ export function apiCreateUser(data) {
   console.log("apiCreateUser");
   console.log(data);
   return ( (dispatch) => {
-    axios.post(`${config.API_URL}/users`, data)
+    axios.post(`${config.API_URL}/users`, data, {
+      headers: { 'x-access-token': cookie.load('token') }
+      })
       .then(response => {
         dispatch({
         type: API_POST_USERS,
@@ -44,7 +47,9 @@ export function apiRevokeUser(data) {
   console.log("apiRevokeUser");
   console.log(data);
   return ( (dispatch) => {
-    axios.put(`${config.API_URL}/users/${data}`)
+    axios.put(`${config.API_URL}/users/${data}`, {
+      headers: { 'x-access-token': cookie.load('token') }
+      })
       .then(response => {
         dispatch({
         type: API_PUT_REVOKE_USER,
@@ -74,4 +79,11 @@ export function apiAuthenticate(data) {
         console.log(error);
       })
   })
+}
+
+export function disconnect() {
+  cookie.remove('token');
+  return {
+    type: DISCONNECT
+  }
 }
