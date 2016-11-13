@@ -4,7 +4,6 @@ import {
     AppContainer,
     NotFound,
     Home,
-    About,
     Users,
     Login
   } from './containers';
@@ -18,12 +17,9 @@ export function getRoutes(store) {
       { /* Home (main) route */ }
      <IndexRoute component={Home}/>
 
-
       { /* Routes */ }
       <Route path="login" component={Login}/>
-      <Route path="about" component={About}/>
       <Route path="users" component={Users}/>
-      { /* <Route path="about" component={Survey}/> */ }
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

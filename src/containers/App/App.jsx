@@ -62,20 +62,13 @@ export default class AppGuiOpenVPN extends React.Component {
                 </NavItem>
               </LinkContainer>
             }
-            {this.props.authToken &&
-              <LinkContainer to="/about">
-                <NavItem>
-                  <i className="fa fa-info-circle"/> About
-                </NavItem>
-              </LinkContainer>
-            }
               {!this.props.authToken &&
               <LinkContainer to="/login">
                 <NavItem eventKey={5}>Login</NavItem>
               </LinkContainer>}
               {this.props.authToken &&
-              <LinkContainer to="/logout">
-                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout.bind(this)}>
+              <LinkContainer to="/login">
+                <NavItem eventKey={6} className="logout-link" >
                   Logout
                 </NavItem>
               </LinkContainer>}

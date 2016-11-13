@@ -14,6 +14,10 @@ export default class Login extends Component {
     this.props.apiAuthenticate(login);
   }
 
+  handleLogout(){
+    this.props.disconnect();
+  }
+
   render() {
     const {authToken, logout} = this.props;
     const styles = require('./Login.scss');
@@ -39,11 +43,11 @@ export default class Login extends Component {
           <p>You are currently logged in.</p>
 
           <div>
-            <button className="btn btn-danger" onClick={logout}><i className="fa fa-sign-out"/>{' '}Log Out</button>
+            <button className="btn btn-danger" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out"/>{' '}Log Out</button>
           </div>
         </div>
         }
       </div>
     );
   }
-} 
+}
