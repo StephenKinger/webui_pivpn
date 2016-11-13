@@ -24,10 +24,6 @@ export default class AppGuiOpenVPN extends React.Component {
     }
   }
 
-  handleLogout(){
-    this.props.disconnect();
-  }
-
   componentWillUpdate(nextProps, nextState){
       if (this.props.authToken != nextProps.authToken) {
         this.props.apiGetUsers();
@@ -73,9 +69,6 @@ export default class AppGuiOpenVPN extends React.Component {
                 </NavItem>
               </LinkContainer>}
             </Nav>
-            {this.props.authToken &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in.</p>
-            }
             <Nav navbar pullRight>
               <NavItem target="_blank" title="View on Github" href="https://github.com/StephenKinger/webui_pivpn">
                 <i className="fa fa-github fa-2x"/>
