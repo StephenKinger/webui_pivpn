@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import AddUserForm from '../../components/Users/AddUserForm';
-import {API_URL} from '../../config'
+import config from '../../config'
 
 export default class Users extends Component {
 
@@ -21,7 +21,7 @@ export default class Users extends Component {
     console.log('handleDownlaod ' + user);
     var name = user.get('name');
     console.log(name);
-    window.location.href = API_URL + '/users/' + name;
+    window.location.href = config.API_URL + '/users/' + name;
   }
 
   _handleEdit() {
@@ -74,7 +74,7 @@ export default class Users extends Component {
           </div>
         </div>
 
-        {this.getItems() &&
+        { this.getItems() &&
         <table className="table table-striped">
           <thead>
           <tr>
@@ -87,8 +87,7 @@ export default class Users extends Component {
           </tr>
           </thead>
           <tbody>
-            {
-              this.getItems().map( user =>
+            { this.getItems().map( user =>
                 <tr key={user.get('id')}>
                   <td className={styles.idCol}>{user.get('id')}</td>
                   <td className={styles.nameCol}>{user.get('name')}</td>
@@ -119,7 +118,8 @@ export default class Users extends Component {
               )
             }
           </tbody>
-        </table>}
+        </table>
+        }
       </div>
     )
   }

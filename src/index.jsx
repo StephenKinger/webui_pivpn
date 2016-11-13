@@ -7,7 +7,7 @@ import reducer from './reducer';
 import {AppContainer} from './containers/App/App';
 import {compose, createStore, combineReducers, applyMiddleware} from 'redux';
 import {getRoutes} from './routes'
-
+import cookie from 'react-cookie';
 import {SET_STATE} from './actions/actions_types'
 
 import reduxThunk from 'redux-thunk';
@@ -31,14 +31,12 @@ store.dispatch({
   type: SET_STATE,
   state: {
     users: [
-      { id: '260924094424Z', name: 'pivpn', state: 'Valid'},
-      { id: '1545', name: 'none', state: 'Valid'},
-      { id: '1515', name: 'none', state: 'Revoked'}
     ],
     serviceState: false,
     auth: false,
     filter_state: 'All',
-    addingUser: false
+    addingUser: false,
+    authToken: cookie.load('token')
   }
 });
 

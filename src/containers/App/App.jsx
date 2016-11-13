@@ -20,7 +20,17 @@ export default class AppGuiOpenVPN extends React.Component {
   }
 
   componentDidMount() {
-    this.props.apiStatus();
+    //this.props.apiStatus();
+  }
+
+  handleLogout(){
+    this.props.disconnect();
+  }
+
+  componentWillUpdate(nextProps, nextState){
+      if (this.props.authToken != nextProps.authToken) {
+        this.props.apiStatus();
+      }
   }
 
   render() {
@@ -33,7 +43,10 @@ export default class AppGuiOpenVPN extends React.Component {
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#33e0ff'}}>
                 <div className={styles.brand}/>
-                <span>WebUI for OpenVPN server management</span>
+                <span>
+                  <img src={require('../Home/pivpn_logo.png')}
+                  width='20px' height='20px'/>  WebUI for pivpn
+                </span>
               </IndexLink>
             </Navbar.Brand>
             <Navbar.Toggle/>
@@ -41,24 +54,41 @@ export default class AppGuiOpenVPN extends React.Component {
 
           <Navbar.Collapse>
             <Nav navbar>
+            {this.props.authToken &&
               <LinkContainer to="/status">
                 <NavItem>
                   <i className="fa fa-tachometer"/> Status
                 </NavItem>
               </LinkContainer>
-
+            }
+            {this.props.authToken &&
               <LinkContainer to="/users">
                 <NavItem>
                   <i className="fa fa-users"/> Users
                 </NavItem>
               </LinkContainer>
+            }
+            {this.props.authToken &&
               <LinkContainer to="/about">
                 <NavItem>
                   <i className="fa fa-info-circle"/> About
                 </NavItem>
               </LinkContainer>
+            }
+              {!this.props.authToken &&
+              <LinkContainer to="/login">
+                <NavItem eventKey={5}>Login</NavItem>
+              </LinkContainer>}
+              {this.props.authToken &&
+              <LinkContainer to="/logout">
+                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout.bind(this)}>
+                  Logout
+                </NavItem>
+              </LinkContainer>}
             </Nav>
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>Anonymous</strong>.</p>
+            {this.props.authToken &&
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in.</p>
+            }
             <Nav navbar pullRight>
               <StartStopService serviceState={this.props.serviceState} toggleService={this.props.toggleService}/>
               <NavItem target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
@@ -87,7 +117,8 @@ function mapStateProps(state) {
     users: state.service.get('users'),
     auth : state.service.get('auth'),
     filter_state: state.service.get('filter_state'),
-    addingUser: state.service.get('addingUser')
+    addingUser: state.service.get('addingUser'),
+    authToken: state.service.get('authToken')
   };
 }
 

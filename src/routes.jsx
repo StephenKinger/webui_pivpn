@@ -6,7 +6,8 @@ import {
     Home,
     About,
     Status,
-    Users
+    Users,
+    Login
   } from './containers';
 
 export function getRoutes(store) {
@@ -20,6 +21,7 @@ export function getRoutes(store) {
 
 
       { /* Routes */ }
+      <Route path="login" component={Login}/>
       <Route path="about" component={About}/>
       <Route path="status" component={Status}/>
       <Route path="users" component={Users}/>
