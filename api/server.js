@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "../dist")));
+//app.use(express.static(path.join(__dirname, "../dist")));
 
 var port     = process.env.PORT || 3000; // set our port
 
@@ -91,7 +91,7 @@ router.use(function(req, res, next) {
 
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-
+	console.log(token)
 	// decode token
 	if (token) {
 
@@ -178,6 +178,7 @@ router.route('/users/:name')
 
 	// update the user with this id
 	.put(function(req, res) {
+		console.log(req.params)
 	   Users.updateUser(req.params.name, function () {
 	    userList = Users.processUserFile("/etc/openvpn/easy-rsa/keys/index.txt");
 	    res.json(userList);

@@ -40,8 +40,9 @@ export function apiCreateUser(data) {
 }
 
 export function apiRevokeUser(data) {
+  console.log('try to revoke'+data)
   return ( (dispatch) => {
-    axios.put(`${config.API_URL}/users/${data}`, {
+    axios.put(`${config.API_URL}/users/${data}`, {command: 'revoke'}, {
       headers: { 'x-access-token': cookie.load('token') }
       })
       .then(response => {

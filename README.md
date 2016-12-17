@@ -24,6 +24,12 @@ You also need to add read rights on /etc/openvpn/easy-rsa/keys/index.txt.
 It can be done with the commands
  sudo chmod 755 /etc/openvpn/easy-rsa/keys
  sudo chmod +r /etc/openvpn/easy-rsa/keys/index.txt
+ 
+##SASS fix on raspberry pi
+In case of deployment on a raspi, there is some troubles with sass.
+You will need to rebuild node-sass to server front end 
+with the following command :
+* npm rebuild node-sass
 
 ## dev
 For the development, launch :
