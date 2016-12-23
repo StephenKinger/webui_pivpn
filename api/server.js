@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 var app        = express();
 var morgan     = require('morgan');
 var cors       = require('cors');
-var config     = require('./config');
+var config     = require('../config/config');
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var path = require("path");
 
@@ -26,9 +26,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-//app.use(express.static(path.join(__dirname, "../dist")));
+/* Used to serve index and bundle for a unique instance */
+app.use(express.static(path.join(__dirname, "../dist")));
 
-var port     = process.env.PORT || 3000; // set our port
+var port     = process.env.PORT || 8080; // set our port
 
 /**
  * User objects and functions
@@ -91,7 +92,6 @@ router.use(function(req, res, next) {
 
 	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-	console.log(token)
 	// decode token
 	if (token) {
 

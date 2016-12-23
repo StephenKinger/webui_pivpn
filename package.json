@@ -4,9 +4,8 @@
   "description": "Web UI to get openvpn profiles and manage revocation list",
   "main": "index.js",
   "scripts": {
-    "prod": "npm run build && npm run frontend & npm run api",
+    "prod": "npm run build && npm run api",
     "build": "./node_modules/webpack/bin/webpack.js",
-    "frontend": "node src/server.js",
     "api": "node api/server.js",
     "api-dev": "nodemon api/server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\"",

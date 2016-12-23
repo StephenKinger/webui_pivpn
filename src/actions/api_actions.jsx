@@ -2,7 +2,7 @@ import axios from 'axios';
 import {API_GET_USERS, API_POST_USERS, API_GET_USER_FILE, API_PUT_REVOKE_USER,
   API_POST_AUTHENTICATE, DISCONNECT} from './actions_types';
 
-import config from '../config';
+import config from '../../config/config';
 import cookie from 'react-cookie';
 
 export function apiGetUsers() {

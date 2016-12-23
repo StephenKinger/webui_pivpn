@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 import AddUserForm from '../../components/Users/AddUserForm';
-import config from '../../config'
+import config from '../../../config/config'
 import cookie from 'react-cookie';
 
 export default class Users extends Component {
