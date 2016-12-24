@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "6.1"
+
+sudo: false
+
+os:
+  - linux
+#  - osx https://docs.travis-ci.com/user/multi-os/
+
+script:
+ - npm install
+ - npm run build
+
+notifications:
+  email: true
+
