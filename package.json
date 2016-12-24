@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prod": "npm run build && npm run api",
-    "build": "./node_modules/webpack/bin/webpack.js",
+    "build": "sh setpublicip.sh && ./node_modules/webpack/bin/webpack.js",
     "api": "node api/server.js",
     "api-dev": "nodemon api/server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\"",

@@ -9,6 +9,7 @@ os:
 #  - osx https://docs.travis-ci.com/user/multi-os/
 
 script:
+ - npm -v
  - npm install
  - npm run build
 

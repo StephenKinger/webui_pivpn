@@ -28,8 +28,8 @@ app.use(cors());
 
 /* Used to serve index and bundle for a unique instance */
 app.use(express.static(path.join(__dirname, "../dist")));
-
-var port     = process.env.PORT || 8080; // set our port
+console.log(config.API_URL);
+var port     = config.port || 8080; // set our port
 
 /**
  * User objects and functions
