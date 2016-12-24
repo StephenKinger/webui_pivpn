@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/StephenKinger/webui_pivpn.svg?branch=master)](https://travis-ci.org/StephenKinger/webui_pivpn)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 # web ui for openvpn server management through pivpn tool
 
 ## Configure
-### IP Address
+
 
 ### IP Address
 In order to have a setup running on your computer, you need to install pivpn
